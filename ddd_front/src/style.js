@@ -10,5 +10,6 @@ ${reset}
 
     body {
         font-family: 'Roboto';
+        background-color: #FFFEFA;
     }
 `;
