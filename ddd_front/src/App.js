@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EventDetail from "./event/EventDetail";
 import EventHome from "./event/EventHome";
 import { GlobalStyle } from "./style";
+import SomTalk from "./talk/SomTalk";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/event" element={<EventHome />} />
           <Route path="/event/detail:id" element={<EventDetail />} />
+          <Route path="/" element={<SomTalk />} />
         </Routes>
       </div>
     </BrowserRouter>

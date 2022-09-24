@@ -51,7 +51,9 @@ const EventInfoTitle = styled.div`
 
 const EventInfoDes = styled.div`
   padding: 20px 16px 40px;
+  font-weight: 400;
   @media only screen and (max-width: 700px) {
+    font-size: 14px;
     padding: 12px 8px 40px;
   }
 `;
