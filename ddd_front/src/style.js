@@ -12,4 +12,9 @@ ${reset}
         font-family: 'Roboto';
         background-color: #FFFEFA;
     }
+    
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
 `;
