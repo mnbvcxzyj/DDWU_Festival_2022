@@ -21,8 +21,7 @@ const MainLogo = styled.div`
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
 
   position: absolute;
-  left: 41%;
-
+  left: 40%;
   font-size: 160%;
   font-weight: 540; ;
 `;
@@ -37,7 +36,7 @@ const NavMenu = styled.ul`
 
   .show {
     width: 300px;
-    position: absolute;
+    position: fixed;
     height: 100%;
     top: 0px;
     left: 0px;
@@ -48,7 +47,7 @@ const NavMenu = styled.ul`
 
   .hide {
     width: 300px;
-    position: absolute;
+    position: fixed;
     left: -300px;
     transition: 1s;
   }
@@ -102,7 +101,7 @@ const Header = () => {
               <li>BOOTH & EVENT</li>
               <li>SOM TALK</li>
             </ListDiv>
-            <BigsomImg src="img/bigsomsom.png" />
+            <BigsomImg src="img/bigsomsom.svg" />
           </ul>
         </NavMenu>
       </HeaderDiv>
