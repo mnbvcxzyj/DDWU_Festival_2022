@@ -19,7 +19,6 @@ const HamburgerToggle = styled.div`
 const MainLogo = styled.div`
   color: rgba(224, 200, 149, 1);
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
-
   position: absolute;
   left: 40%;
   font-size: 160%;
@@ -51,6 +50,15 @@ const NavMenu = styled.ul`
     left: -300px;
     transition: 1s;
   }
+
+  ul li {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  ul li img {
+    vertical-align: middle;
+  }
 `;
 
 const NavLogo = styled.div`
@@ -74,8 +82,12 @@ const BigsomImg = styled.img`
 `;
 
 const ListDiv = styled.div`
-  margin: 0 0 55% 20%;
+  margin: 0 0 50% 12%;
   line-height: 65px;
+`;
+
+const ListImg = styled.img`
+  padding-right: 9px;
 `;
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -95,11 +107,31 @@ const Header = () => {
               <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
             </BackImgDiv>
             <ListDiv>
-              <li>HOME</li>
-              <li>INTRODUCE</li>
-              <li>TIMETABLE</li>
-              <li>BOOTH & EVENT</li>
-              <li>SOM TALK</li>
+              <li>
+                {" "}
+                <ListImg src="img/menu_none.png" />
+                HOME
+              </li>
+              <li>
+                {" "}
+                <ListImg src="img/menu_none.png" />
+                INTRODUCE
+              </li>
+              <li>
+                {" "}
+                <ListImg src="img/menu_none.png" />
+                TIMETABLE
+              </li>
+              <li>
+                {" "}
+                <ListImg src="img/menu_none.png" />
+                BOOTH & EVENT
+              </li>
+              <li>
+                {" "}
+                <ListImg src="img/menu_none.png" />
+                SOM TALK
+              </li>
             </ListDiv>
             <BigsomImg src="img/bigsomsom.svg" />
           </ul>
