@@ -2,81 +2,109 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const HeaderDiv = styled.div`
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: rgba(139, 40, 66, 1);
-
-  @media screen and (max-width: 300px) {
-    .menu_list {
-      display: ${(props) => (props.isOpen ? "flex" : "none")};
-      flex-direction: column;
-      width: 100%;
-      background-color: rgba(139, 40, 66, 1);
-      transition: 1s;
-    }
-  }
 `;
 
+// togle
 const HamburgerToggle = styled.div`
   padding: 1rem 1rem;
+  cursor: pointer;
 `;
 
+// logo
 const MainLogo = styled.div`
   color: rgba(224, 200, 149, 1);
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
-  font-size: 1.7em;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
+
+  position: absolute;
+  left: 41%;
+
+  font-size: 160%;
+  font-weight: 540; ;
 `;
 
-const MainLogoToggle = styled.div`
-  color: rgba(224, 200, 149, 1);
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
-  font-size: 1.7em;
-  left: 30%;
-  right: 30%;
-  top: 5.91%;
-  bottom: 87.68%;
-`;
-
-const HamburgurOpenul = styled.ul`
+const NavMenu = styled.ul`
   display: flex;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  list-style: none;
+  color: rgba(255, 255, 255, 1);
 
-  &.menu_list {
-    list-style: none;
+  .show {
+    width: 300px;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    margin-bottom: -100%;
+    transition: 1s;
+    background-color: rgba(139, 40, 66, 1);
+  }
+
+  .hide {
+    width: 300px;
+    position: absolute;
+    left: -300px;
+    transition: 1s;
   }
 `;
 
-const Menuli = styled.li`
-  padding: 0 1rem;
+const NavLogo = styled.div`
+  color: rgba(224, 200, 149, 1);
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
+  float: left;
+  margin: 15% 10% 20% 25%;
+  font-size: 155%;
+  font-weight: 540;
 `;
 
-const ToggleBackImg = styled.img``;
+const BackImgDiv = styled.div`
+  float: left;
+  margin-top: 15%;
+`;
 
+const BigsomImg = styled.img`
+  position: absolute;
+  margin-left: 3%;
+  width: 95%;
+`;
+
+const ListDiv = styled.div`
+  margin: 0 0 55% 20%;
+  line-height: 65px;
+`;
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
-  const toggleMenu = () => {
-    setOpen((isOpen) => !isOpen);
-  };
 
   return (
     <>
       <HeaderDiv isOpen={isOpen}>
-        <HamburgerToggle onClick={() => toggleMenu()}>
+        {/* // 햄버거 메뉴 로고 */}
+        <HamburgerToggle onClick={() => setOpen(!isOpen)}>
           <img src="img/hamburger.png" />
         </HamburgerToggle>
-        <MainLogo>同動烔</MainLogo>
-
-        <HamburgurOpenul className="menu_list">
-          <MainLogoToggle>同動烔</MainLogoToggle>
-          <ToggleBackImg src="img/toggle_back.png"></ToggleBackImg>
-          <Menuli>HOME</Menuli>
-          <Menuli>INTRODUCE</Menuli>
-          <Menuli>TIME TABLE</Menuli>
-          <Menuli>BOOTH & Event</Menuli>
-          <Menuli>SOMTALK</Menuli>
-        </HamburgurOpenul>
+        <MainLogo>同 動 烔</MainLogo>
+        <NavMenu isOpen={isOpen}>
+          <ul className={isOpen ? "show" : "hide"}>
+            <NavLogo>同 動 烔 </NavLogo>
+            <BackImgDiv>
+              <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
+            </BackImgDiv>
+            <ListDiv>
+              <li>HOME</li>
+              <li>INTRODUCE</li>
+              <li>TIMETABLE</li>
+              <li>BOOTH & EVENT</li>
+              <li>SOM TALK</li>
+            </ListDiv>
+            <BigsomImg src="img/bigsomsom.png" />
+          </ul>
+        </NavMenu>
       </HeaderDiv>
     </>
   );
