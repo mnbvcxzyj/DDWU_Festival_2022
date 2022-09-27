@@ -165,7 +165,7 @@ function SomTalk() {
       setComment(response.data.reverse());
     });
   }, []);
-
+  const talkRef = useRef();
   return (
     <SomTalkBox>
       <SomTalkHeader>
@@ -205,15 +205,15 @@ function SomTalk() {
           </SomTalkBtn>
         </SomTalkForm>
       </SomTalkHeader>
-      <SomTalkMain>
+      <SomTalkMain ref={talkRef}>
         {comment.map((cm, index) => (
           <SomTalkContent bg={bgColor[index % 5]} key={index}>
             {cm.comment}
           </SomTalkContent>
         ))}
         <SomTalkTop
-          onClick={(event) => {
-            console.dir(event);
+          onClick={() => {
+            talkRef.current.scrollTop = 0;
           }}
         >
           <img src={require("../img/arrowUp.png")} />
