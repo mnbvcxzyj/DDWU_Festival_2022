@@ -5,7 +5,7 @@ const HeaderDiv = styled.div`
   /* max-width: 1280px; */
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   background-color: rgba(139, 40, 66, 1);
 `;
 
@@ -19,10 +19,11 @@ const HamburgerToggle = styled.div`
 const MainLogo = styled.div`
   color: rgba(224, 200, 149, 1);
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
-  position: absolute;
-  left: 40%;
+  padding: 1rem 1rem;
   font-size: 160%;
-  font-weight: 540; ;
+
+  align-items: center;
+  font-weight: 540;
 `;
 
 const NavMenu = styled.ul`
@@ -91,24 +92,29 @@ const ListImg = styled.img`
 `;
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
+  const [nowMenu, SetnowMenu] = useState(1);
 
   return (
     <>
       <HeaderDiv isOpen={isOpen}>
         {/* // 햄버거 메뉴 로고 */}
+
         <HamburgerToggle onClick={() => setOpen(!isOpen)}>
           <img src="img/hamburger.png" />
         </HamburgerToggle>
+
         <MainLogo>同 動 烔</MainLogo>
+
         <NavMenu isOpen={isOpen}>
           <ul className={isOpen ? "show" : "hide"}>
-            <NavLogo>同 動 烔 </NavLogo>
+            <NavLogo>同 動 烔</NavLogo>
             <BackImgDiv>
               <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
             </BackImgDiv>
             <ListDiv>
               <li>
                 {" "}
+                {/* 나중에 a 써서 넘기기 */}
                 <ListImg src="img/menu_none.png" />
                 HOME
               </li>

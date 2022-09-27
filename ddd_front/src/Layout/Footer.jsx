@@ -6,9 +6,9 @@ const FooterDiv = styled.div`
   margin: 0 auto;
   width: 100%;
   z-index: 1;
-  position: fixed;
+  display: flex;
+  flex-direction: column;
   bottom: 0;
-  align-items: center;
   background-color: rgba(139, 40, 66, 1);
 `;
 
@@ -47,8 +47,8 @@ const NameText = styled.div`
 
 const LogoImg = styled.img`
   margin: auto;
-  display: block;
-  padding-top: 20px;
+  padding-top: 23px;
+  padding-bottom: 10px;
 `;
 const Footer = () => {
   return (
@@ -59,13 +59,13 @@ const Footer = () => {
           <NameDiv>
             <PartText>기획</PartText>
             <NameText>
-              &nbsp;&nbsp;&nbsp;&nbsp;동덕여자대학교 축제 운영 위원회
+              &nbsp;&nbsp;&nbsp; 동덕여자대학교 축제 운영 위원회
             </NameText>
           </NameDiv>
           <NameDiv>
             <PartText>개발</PartText>
             <NameText>
-              &nbsp;&nbsp;&nbsp;&nbsp;동덕여자대학교 멋쟁이 사자처럼
+              &nbsp;&nbsp;&nbsp; 동덕여자대학교 멋쟁이 사자처럼
             </NameText>
           </NameDiv>
           <NameDiv>
