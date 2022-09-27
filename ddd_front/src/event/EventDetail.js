@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 const EventDetailBox = styled.div`
   padding: 24px;
 `;
@@ -82,15 +83,16 @@ function EventDetail() {
     eventImg:
       "https://a.cdn-hotels.com/gdcs/production93/d1197/eb5f6d13-549d-4513-beef-c6ca685f5610.jpg",
     eventTitle: "동동동",
-    eventSingleLine: "어서에오서오",
+    eventIntro: "어서에오서오",
     eventGuide: "어서에오서오ff",
     eventAttention: "사람 많은 주의",
   });
-  // useEffect(() => {
-  //   axios.get(`http://127.0.0.1:8000/product/${params.id}`).then((response) => {
-  //     setDt(response.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/${params.id}`).then((response) => {
+      setDt(response.data);
+    });
+  }, []);
+
   return (
     <EventDetailBox>
       <EventImgDiv>
@@ -103,7 +105,7 @@ function EventDetail() {
             <img src={require("../img/liststyle.png")} />
             <span>한 줄 소개</span>
           </EventInfoTitle>
-          <EventInfoDes>{dt.eventSingleLine}</EventInfoDes>
+          <EventInfoDes>{dt.eventIntro}</EventInfoDes>
         </EventInfo>
         <EventInfo>
           <EventInfoTitle>

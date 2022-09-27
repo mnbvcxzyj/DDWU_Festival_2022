@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const EventHomeBox = styled.div`
   padding: 24px;
@@ -109,46 +110,24 @@ const EventIntro = styled.p`
 `;
 
 function EventHome() {
-  const [eData, setEData] = useState([
-    {
-      id: 1,
-      eventImg:
-        "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/5xq2/image/0lp8RLaJ2IgctTWVl2nEa-JRCSc.jpg",
-      eventTitle: "할로 WIN 가요제",
-      eventIntro:
-        "축제의 즐거움을 학우들 그리고 노래와 함께 나누고 싶다면? 가요제 필수 관람!",
-    },
-    {
-      id: 2,
-      eventImg:
-        "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/5xq2/image/0lp8RLaJ2IgctTWVl2nEa-JRCSc.jpg",
-      eventTitle: "할로 WIN 가요제",
-      eventIntro:
-        "축제의 즐거움을 학우들 그리고 노래와 함께 나누고 싶다면? 가요제 필수 관람!",
-    },
-    {
-      id: 3,
-      eventImg:
-        "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/5xq2/image/0lp8RLaJ2IgctTWVl2nEa-JRCSc.jpg",
-      eventTitle: "할로 WIN 가요제",
-      eventIntro:
-        "축제의 즐거움을 학우들 그리고 노래와 함께 나누고 싶다면? 가요제 필수 관람!",
-    },
-  ]);
+  const [eData, setEData] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/").then((response) => {
+      setEData(response.data);
+    });
+  }, []);
   return (
     <EventHomeBox>
       <SearchForm
         onSubmit={(event) => {
           event.preventDefault();
-          // axios
-          //   .get(
-
-          //   )
-          //   .then((response) => {
-          // setEData(response.data);
-          //   });
+          axios
+            .get(`http://127.0.0.1:8000/?search=${inputSearch}`)
+            .then((response) => {
+              setEData(response.data);
+            });
         }}
       >
         <Input
@@ -164,15 +143,15 @@ function EventHome() {
       </SearchForm>
       <EventText>총 {eData.length}개의 이벤트</EventText>
       <EventList>
-        {eData.map((list) => (
-          <EventBox key={list.id}>
+        {eData.map((list, index) => (
+          <EventBox key={index}>
             <EventImgDiv>
               <EventImg src={list.eventImg} />
             </EventImgDiv>
             <EventInfo>
               <EventTitle
                 onClick={() => {
-                  navigate(`/event/detail${list.id}`);
+                  navigate(`/event/detail${index + 1}`);
                 }}
               >
                 {list.eventTitle}

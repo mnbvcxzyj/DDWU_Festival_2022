@@ -9,7 +9,7 @@ ${reset}
     }
 
     body {
-        font-family: 'Roboto';
+        font-family: 'Roboto', sans-serif;
         background-color: #FFFEFA;
     }
     
