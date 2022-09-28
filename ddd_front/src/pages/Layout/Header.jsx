@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const HeaderDiv = styled.div`
   /* max-width: 1280px; */
   margin: 0 auto;
@@ -90,6 +90,7 @@ const ListDiv = styled.div`
 const ListImg = styled.img`
   padding-right: 9px;
 `;
+
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [nowMenu, SetnowMenu] = useState(1);
@@ -112,32 +113,52 @@ const Header = () => {
               <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
             </BackImgDiv>
             <ListDiv>
-              <li>
-                {" "}
-                {/* 나중에 a 써서 넘기기 */}
-                <ListImg src="img/menu_none.png" />
-                HOME
-              </li>
-              <li>
-                {" "}
-                <ListImg src="img/menu_none.png" />
-                INTRODUCE
-              </li>
-              <li>
-                {" "}
-                <ListImg src="img/menu_none.png" />
-                TIMETABLE
-              </li>
-              <li>
-                {" "}
-                <ListImg src="img/menu_none.png" />
-                BOOTH & EVENT
-              </li>
-              <li>
-                {" "}
-                <ListImg src="img/menu_none.png" />
-                SOM TALK
-              </li>
+              <Link to="/" className="nav-1" onClick={() => setOpen(!isOpen)}>
+                <li>
+                  <ListImg src="img/menu_none.png" />
+                  HOME
+                </li>
+              </Link>
+              <Link
+                to="/introduce"
+                className="nav-2"
+                onClick={() => setOpen(!isOpen)}
+              >
+                <li>
+                  <ListImg src="img/menu_none.png" />
+                  INTRODUCE
+                </li>
+              </Link>
+              <Link
+                to="/timetable"
+                className="nav-3"
+                onClick={() => setOpen(!isOpen)}
+              >
+                <li>
+                  <ListImg src="img/menu_none.png" />
+                  TIMETABLE
+                </li>
+              </Link>
+              <Link
+                to="/booth_event"
+                className="nav-4"
+                onClick={() => setOpen(!isOpen)}
+              >
+                <li>
+                  <ListImg src="img/menu_none.png" />
+                  BOOTH & EVENT
+                </li>
+              </Link>
+              <Link
+                to="/somtalk"
+                className="nav-5"
+                onClick={() => setOpen(!isOpen)}
+              >
+                <li>
+                  <ListImg src="img/menu_none.png" />
+                  SOM TALK
+                </li>
+              </Link>
             </ListDiv>
             <BigsomImg src="img/bigsomsom.svg" />
           </ul>

@@ -21,28 +21,32 @@ const FestivalName = styled.div`
   color: #ffffff;
 `;
 
-const NameDiv = styled.div`
+const PartDiv = styled.div`
   flex-direction: column;
-  padding: 24px 0 0 24px;
+  width: fit-content;
 `;
 
-const PartText = styled.div`
-  float: left;
+const PartName = styled.div`
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.333333px;
   color: #ffffff;
+  padding: 24px 0 0 24px;
+`;
+
+const NameDiv = styled.div`
+  flex-direction: column;
+  width: fit-content;
 `;
 
 const NameText = styled.div`
-  float: left;
-  padding-left: 30px;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.333333px;
   color: #d9b0bb;
+  padding: 24px 0 0 36px;
 `;
 
 const LogoImg = styled.img`
@@ -50,29 +54,27 @@ const LogoImg = styled.img`
   padding-top: 23px;
   padding-bottom: 10px;
 `;
+
+const TextDiv = styled.div`
+  display: flex;
+`;
 const Footer = () => {
   return (
     <>
       <FooterDiv>
         <FestivalName>2022 동덕여자대학교 대동제 [ 동.동.동 ]</FestivalName>
-        <div>
+        <TextDiv>
+          <PartDiv>
+            <PartName>기획</PartName>
+            <PartName>개발</PartName>
+            <PartName>UX / UI</PartName>
+          </PartDiv>
           <NameDiv>
-            <PartText>기획</PartText>
-            <NameText>
-              &nbsp;&nbsp;&nbsp; 동덕여자대학교 축제 운영 위원회
-            </NameText>
-          </NameDiv>
-          <NameDiv>
-            <PartText>개발</PartText>
-            <NameText>
-              &nbsp;&nbsp;&nbsp; 동덕여자대학교 멋쟁이 사자처럼
-            </NameText>
-          </NameDiv>
-          <NameDiv>
-            <PartText>UX / UI</PartText>
+            <NameText>동덕여자대학교 축제 운영 위원회 </NameText>
+            <NameText>동덕여자대학교 멋쟁이 사자처럼</NameText>
             <NameText>동덕여자대학교 멋쟁이 사자처럼</NameText>
           </NameDiv>
-        </div>
+        </TextDiv>
         <LogoImg src="img/FooterLogo_1.svg" />
       </FooterDiv>
     </>
