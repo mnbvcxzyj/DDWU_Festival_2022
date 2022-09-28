@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useQuery } from "react-query";
 
 const SomTalkBox = styled.div`
   padding: 24px;
@@ -165,6 +166,28 @@ function SomTalk() {
       setComment(response.data.reverse());
     });
   }, []);
+
+  const { status, data, error } = useQuery(
+    "talk",
+    () => {
+      return axios
+        .get("http://127.0.0.1:8000/posts/comments")
+        .then((response) => {
+          return response.data.reverse();
+        });
+    },
+    {
+      refetchOnWindowFocus: false,
+
+      // refetchInterval: 1000, // 1초마다 갱신
+      onSuccess: (data) => {
+        console.log(data);
+        // 성공시 호출
+        setComment(data);
+      },
+    }
+  );
+  console.log(status);
   const talkRef = useRef();
   return (
     <SomTalkBox>
@@ -205,20 +228,25 @@ function SomTalk() {
           </SomTalkBtn>
         </SomTalkForm>
       </SomTalkHeader>
-      <SomTalkMain ref={talkRef}>
-        {comment.map((cm, index) => (
-          <SomTalkContent bg={bgColor[index % 5]} key={index}>
-            {cm.comment}
-          </SomTalkContent>
-        ))}
-        <SomTalkTop
-          onClick={() => {
-            talkRef.current.scrollTop = 0;
-          }}
-        >
-          <img src={require("../img/arrowUp.png")} />
-        </SomTalkTop>
-      </SomTalkMain>
+
+      {status === "success" ? (
+        <SomTalkMain ref={talkRef}>
+          {comment.map((cm, index) => (
+            <SomTalkContent bg={bgColor[index % 5]} key={index}>
+              {cm.comment}
+            </SomTalkContent>
+          ))}
+          <SomTalkTop
+            onClick={() => {
+              talkRef.current.scrollTop = 0;
+            }}
+          >
+            <img src={require("../img/arrowUp.png")} />
+          </SomTalkTop>
+        </SomTalkMain>
+      ) : (
+        <div>오류가 생겼습니다</div>
+      )}
     </SomTalkBox>
   );
 }
