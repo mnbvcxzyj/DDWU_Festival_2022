@@ -13,7 +13,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <Routes>
-        <Route path="/" element={<Test1 />} />
+        <Route path="/" element={<Test1 value="1" />} />
         <Route path="/introduce" element={<Test2 />} />
         <Route path="/timetable" element={<Test3 />} />
         <Route path="/booth_event" element={<Test4 />} />
