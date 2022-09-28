@@ -115,14 +115,14 @@ const Somsom = styled.div`
 `;
 
 const Somsom2 = styled.div`
-  display: fix;
-  margin-left: 35%;
   width: 100px;
   height: 92px;
+  margin-top: 10px;
+  margin-left: 15%;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 `;
-//margin-top: 5 / 10 물어보고 결정하기
 
+//margin-top: 5 / 10 물어보고 결정하기
 const Text = styled.div`
   width: 350px;
   height: 28px;
@@ -154,6 +154,12 @@ const ColorText = styled.text`
 const ColorText2 = styled.text`
   color: #5f4637;
   font-weight: 700;
+`;
+
+const Divv = styled.div`
+  width: 330px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 function Home() {
@@ -194,30 +200,32 @@ function Home() {
             <Contents>프로그램 부스에 참여하고 나면 도장을 찍어드려요</Contents>
           </WhiteFooter>
         </StampTour>
-        <Somsom2>
-          <img
-            src={SOMSOM}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          ></img>
-        </Somsom2>
-        <CampusMap>
-          <img
-            src={MAPIMG}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          ></img>
-          <WhiteFooter>
-            <Title2>캠퍼스 맵</Title2>
-            <Contents2>학교 건물들의 위치와 구조를 한번에</Contents2>
-          </WhiteFooter>
-        </CampusMap>
+        <Divv>
+          <Somsom2>
+            <img
+              src={SOMSOM}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            ></img>
+          </Somsom2>
+          <CampusMap>
+            <img
+              src={MAPIMG}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            ></img>
+            <WhiteFooter>
+              <Title2>캠퍼스 맵</Title2>
+              <Contents2>학교 건물들의 위치와 구조를 한번에</Contents2>
+            </WhiteFooter>
+          </CampusMap>
+        </Divv>
         <Text>
           한가지 <ColorText>동</ColorText> + 움직일 <ColorText>동</ColorText> +
           뜨거운 모양 <ColorText>동</ColorText> 을 합친 단어
