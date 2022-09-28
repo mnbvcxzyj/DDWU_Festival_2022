@@ -109,15 +109,24 @@ const EventIntro = styled.p`
   }
 `;
 
+const SearchPreview = styled.div`
+  border: 2px solid #d09b2c;
+  border-radius: 5px;
+`;
+
 function EventHome() {
   const [eData, setEData] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState([]);
+  const [showSearchBox, setShowSearchBox] = useState(false);
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/").then((response) => {
       setEData(response.data);
+      setShowSearch(response.data);
     });
   }, []);
+
   return (
     <EventHomeBox>
       <SearchForm
@@ -127,6 +136,7 @@ function EventHome() {
             .get(`http://127.0.0.1:8000/?search=${inputSearch}`)
             .then((response) => {
               setEData(response.data);
+              setShowSearchBox(false);
             });
         }}
       >
@@ -135,12 +145,29 @@ function EventHome() {
           value={inputSearch}
           onChange={(event) => {
             setInputSearch(event.target.value);
+            axios
+              .get(`http://127.0.0.1:8000/?search=${event.target.value}`)
+              .then((response) => {
+                setShowSearch(response.data);
+              });
           }}
+          onFocus={() => setShowSearchBox(true)}
+          onBlur={() => setShowSearchBox(false)}
         />
         <InputBtn>
           <BtnImg src={require("../img/searchIcon.png")} />
         </InputBtn>
       </SearchForm>
+      {showSearchBox ? (
+        <SearchPreview>
+          {showSearch.map((result) => (
+            <div key={`${result.eventTitle}`}>{result.eventTitle}</div>
+          ))}
+        </SearchPreview>
+      ) : (
+        ""
+      )}
+
       <EventText>총 {eData.length}개의 이벤트</EventText>
       <EventList>
         {eData.map((list, index) => (

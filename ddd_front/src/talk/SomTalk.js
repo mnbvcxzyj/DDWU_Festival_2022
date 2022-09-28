@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 const SomTalkBox = styled.div`
   padding: 24px;
@@ -103,6 +103,7 @@ const SomTalkTop = styled.div`
   right: 5px;
   float: right;
   cursor: pointer;
+  scroll-behavior: smooth;
 `;
 
 function SomTalk() {
@@ -160,13 +161,8 @@ function SomTalk() {
     "#DADADA",
     "linear-gradient(0deg, #B0687B, #B0687B), linear-gradient(0deg, #EED8DE, #EED8DE), linear-gradient(0deg, #D09B2C, #D09B2C), linear-gradient(0deg, #D09B2C, #D09B2C), #D09B2C",
   ];
-  const [sendCmt, setSendCmt] = useState();
-  useEffect(() => {
-    axios.get("http://127.0.0.1:8000/posts/comments").then((response) => {
-      setComment(response.data.reverse());
-    });
-  }, []);
-
+  const [sendCmt, setSendCmt] = useState("");
+  const talkRef = useRef();
   const { status, data, error } = useQuery(
     "talk",
     () => {
@@ -177,18 +173,31 @@ function SomTalk() {
         });
     },
     {
-      refetchOnWindowFocus: false,
-
-      // refetchInterval: 1000, // 1초마다 갱신
+      // refetchOnWindowFocus: false, // 창을 새로 펼칠 때
+      // refetchInterval: 1000, // 1초마다 갱신 - 폴링; 실시간처럼 보이게 하는 것. 일정한 주기를 가지고 응답ㅇ르 주고받는 방식을 폴링 방식이라고 한다.
       onSuccess: (data) => {
-        console.log(data);
         // 성공시 호출
         setComment(data);
       },
     }
   );
-  console.log(status);
-  const talkRef = useRef();
+  const queryClient = useQueryClient();
+  const { mutate, isLoading, isError, errors, isSuccess } = useMutation(
+    (comment) => {
+      return axios
+        .post("http://127.0.0.1:8000/posts/comments", { comment })
+        .then((response) => {
+          // return response.data.reverse();
+        });
+    },
+    {
+      onSuccess: (data, vari, ctext) => {
+        queryClient.invalidateQueries("talk"); //보통 새로운 데이터가 생겼어도 정해진 시간에 도달하지 않으면 화면에 보여지지 않는데 이를 해결하기 위함
+      },
+    }
+  );
+  // srcoll-event
+
   return (
     <SomTalkBox>
       <SomTalkHeader>
@@ -201,18 +210,8 @@ function SomTalk() {
         <SomTalkForm
           onSubmit={(event) => {
             event.preventDefault();
-            axios
-              .post("http://127.0.0.1:8000/posts/comments", {
-                comment: sendCmt,
-              })
-              .then(() => {
-                setSendCmt("");
-                axios
-                  .get("http://127.0.0.1:8000/posts/comments")
-                  .then((response) => {
-                    setComment(response.data.reverse());
-                  });
-              });
+            mutate(sendCmt);
+            setSendCmt("");
           }}
         >
           <SomTalkTextArea
@@ -228,25 +227,24 @@ function SomTalk() {
           </SomTalkBtn>
         </SomTalkForm>
       </SomTalkHeader>
-
-      {status === "success" ? (
-        <SomTalkMain ref={talkRef}>
-          {comment.map((cm, index) => (
-            <SomTalkContent bg={bgColor[index % 5]} key={index}>
-              {cm.comment}
-            </SomTalkContent>
-          ))}
+      <div ref={talkRef}>
+        <SomTalkMain>
+          {status === "success"
+            ? data.map((cm, index) => (
+                <SomTalkContent bg={bgColor[index % 5]} key={index}>
+                  {cm.comment}
+                </SomTalkContent>
+              ))
+            : ""}
           <SomTalkTop
             onClick={() => {
-              talkRef.current.scrollTop = 0;
+              talkRef.current.firstChild.scrollTop = 0;
             }}
           >
             <img src={require("../img/arrowUp.png")} />
           </SomTalkTop>
         </SomTalkMain>
-      ) : (
-        <div>오류가 생겼습니다</div>
-      )}
+      </div>
     </SomTalkBox>
   );
 }
