@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -132,26 +132,22 @@ function EventHome() {
   const [eData, setEData] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams({ search: "" });
+  const params = searchParams.get("search");
+
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/").then((response) => {
+    axios.get(`http://127.0.0.1:8000/?search=${params}`).then((response) => {
       setEData(response.data);
+      setInputSearch(params);
     });
-  }, []);
+  }, [params]);
 
   return (
     <EventHomeBox>
       <SearchForm
         onSubmit={(event) => {
           event.preventDefault();
-          // history.push({
-          //   pathname: "/event",
-          //   search: "",
-          // });
-          axios
-            .get(`http://127.0.0.1:8000/?search=${inputSearch}`)
-            .then((response) => {
-              setEData(response.data);
-            });
+          setSearchParams({ search: inputSearch });
         }}
       >
         <Input
