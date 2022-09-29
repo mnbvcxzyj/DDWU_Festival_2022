@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import DefaultIcon from "./img/menu_none.png";
+import ClickIcon from "./img/menu_click.png";
 
 const HeaderDiv = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
   background-color: rgba(139, 40, 66, 1);
+  align-items: center;
+  justify-content: center;
 `;
 
 // togle
@@ -16,14 +20,16 @@ const HamburgerToggle = styled.div`
   cursor: pointer;
 `;
 
+// 가운데 정렬이 코드로 안 먹음
 // logo
 const MainLogo = styled.div`
   color: rgba(224, 200, 149, 1);
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
-  padding: 1rem 1rem;
-  font-size: 160%;
-
+  width: 160px;
+  margin: 0 auto;
   align-items: center;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
+  font-size: 160%;
+  padding: 1rem 1rem;
   font-weight: 540;
 `;
 
@@ -49,15 +55,17 @@ const NavMenu = styled.ul`
   }
 
   ul li {
-    display: inline-block;
     cursor: pointer;
     font-weight: 700;
     font-size: 20px;
-    line-height: 28px;
+    display: inline-block;
+    margin-right: 3%;
+    /* line-height: 50px; */
   }
 
   ul li img {
     vertical-align: middle;
+    width: 36px;
   }
 `;
 
@@ -72,28 +80,30 @@ const NavLogo = styled.div`
 
 const BackImgDiv = styled.div`
   float: left;
-  position: relative;
+  /* position: relative; */
   margin: 50px 0 0 30px;
 `;
 
-const BigsomImg = styled.img`
-  margin-left: 2%;
-  margin-top: 50px;
-  max-width: 300px;
+const GhostSomImg = styled.img`
+  width: 100%;
+  margin: auto;
 `;
 
 const ListDiv = styled.div`
-  margin: 0 0 30% 8%;
-  line-height: 65px;
+  text-align: center;
+  line-height: 70px;
+  justify-content: space-between;
 `;
 
 const ListImg = styled.img`
-  padding-right: 8px;
+  padding-right: 10px;
   width: 50px;
 `;
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
+  const [isClick, setClick] = useState(false);
+
   const activeStyle = {
     color: "rgba(224, 200, 149, 1)",
   };
@@ -109,83 +119,96 @@ const Header = () => {
           <img src="img/hamburger.png" />
         </HamburgerToggle>
         <MainLogo>同 動 烔</MainLogo>
-        <NavMenu isOpen={isOpen}>
-          <ul className={isOpen ? "show" : "hide"}>
-            <NavLogo>同 動 烔</NavLogo>
-            <BackImgDiv>
-              <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
-            </BackImgDiv>
-            <ListDiv>
-              <NavLink
-                to={"/"}
-                className="nav-1"
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                onClick={() => setOpen(!isOpen)}
-              >
-                <li>
-                  <ListImg src="img/smallsomsom.png" />
-                  HOME
-                </li>
-              </NavLink>
-              <NavLink
-                to={"/introduce"}
-                className="nav-2"
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                onClick={() => setOpen(!isOpen)}
-              >
-                <li>
-                  <ListImg src="img/smallsomsom.png" />
-                  INTRODUCE
-                </li>
-              </NavLink>
-              <NavLink
-                to={"/timetable"}
-                className="nav-3"
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                onClick={() => setOpen(!isOpen)}
-              >
-                <li>
-                  <ListImg src="img/smallsomsom.png" />
-                  TIMETABLE
-                </li>
-              </NavLink>
-              <NavLink
-                to={"/booth_event"}
-                className="nav-4"
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                onClick={() => setOpen(!isOpen)}
-              >
-                <li>
-                  <ListImg src="img/smallsomsom.png" />
-                  BOOTH & EVENT
-                </li>
-              </NavLink>
-              <NavLink
-                to={"/somtalk"}
-                className="nav-5"
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                onClick={() => setOpen(!isOpen)}
-              >
-                <li>
-                  <ListImg src="img/smallsomsom.png" />
-                  SOM TALK
-                </li>
-              </NavLink>
-            </ListDiv>
-            <BigsomImg src="img/bigsomsom.svg" />
-          </ul>
-        </NavMenu>
       </HeaderDiv>
+      <NavMenu isOpen={isOpen}>
+        <ul className={isOpen ? "show" : "hide"}>
+          <NavLogo>同 動 烔</NavLogo>
+          <BackImgDiv>
+            <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
+          </BackImgDiv>
+          <ListDiv>
+            <NavLink
+              to={"/"}
+              className="nav-1"
+              style={({ isActive }) =>
+                isActive ? activeStyle : nonActiveStyle
+              }
+              onClick={() => {
+                setOpen(!isOpen);
+                setClick(!isClick);
+              }}
+            >
+              <li>
+                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                HOME
+              </li>
+            </NavLink>
+            <NavLink
+              to={"/introduce"}
+              className="nav-2"
+              style={({ isActive }) =>
+                isActive ? activeStyle : nonActiveStyle
+              }
+              onClick={() => {
+                setOpen(!isOpen);
+                setClick(!isClick);
+              }}
+            >
+              <li>
+                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                INTRODUCE
+              </li>
+            </NavLink>
+            <NavLink
+              to={"/timetable"}
+              className="nav-3"
+              style={({ isActive }) =>
+                isActive ? activeStyle : nonActiveStyle
+              }
+              onClick={() => {
+                setOpen(!isOpen);
+                setClick(!isClick);
+              }}
+            >
+              <li>
+                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                TIMETABLE
+              </li>
+            </NavLink>
+            <NavLink
+              to={"/booth_event"}
+              className="nav-4"
+              style={({ isActive }) =>
+                isActive ? activeStyle : nonActiveStyle
+              }
+              onClick={() => {
+                setOpen(!isOpen);
+                setClick(!isClick);
+              }}
+            >
+              <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+              BOOTH & EVENT
+            </NavLink>
+            <NavLink
+              to={"/somtalk"}
+              className="nav-5"
+              style={({ isActive }) =>
+                isActive ? activeStyle : nonActiveStyle
+              }
+              onClick={() => {
+                setOpen(!isOpen);
+                setClick(!isClick);
+              }}
+            >
+              <li>
+                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                SOM TALK
+              </li>
+            </NavLink>
+          </ListDiv>
+          <GhostSomImg src="img/ghostSomSom.svg" />
+        </ul>
+      </NavMenu>
     </>
   );
 };

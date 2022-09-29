@@ -2,80 +2,85 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const FooterDiv = styled.div`
-  /* max-width: 1280px; */
+  max-width: 1280px;
   margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 100%;
   z-index: 1;
   display: flex;
   flex-direction: column;
   bottom: 0;
   background-color: rgba(139, 40, 66, 1);
+
+  hr {
+    width: 60%;
+    border: 0.1px solid #ffffff;
+  }
+
+  img {
+    margin: 0 auto;
+    width: 25px;
+  }
 `;
 
-const FestivalName = styled.div`
-  padding: 24px 0 0 24px;
+const PartDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const TextDiv = styled.div`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: -0.333333px;
+  color: #d9b0bb;
+  text-align: center;
+`;
+
+const NameDiv = styled.div`
+  text-align: center;
+  margin-left: 18px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: -0.333333px;
+  color: #d9b0bb;
+`;
+
+const MainLogo = styled.div`
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
   line-height: 19px;
   letter-spacing: -0.333333px;
   color: #ffffff;
 `;
 
-const PartDiv = styled.div`
-  flex-direction: column;
-  width: fit-content;
-`;
-
-const PartName = styled.div`
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: -0.333333px;
-  color: #ffffff;
-  padding: 24px 0 0 24px;
-`;
-
-const NameDiv = styled.div`
-  flex-direction: column;
-  width: fit-content;
-`;
-
-const NameText = styled.div`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: -0.333333px;
-  color: #d9b0bb;
-  padding: 24px 0 0 36px;
-`;
-
-const LogoImg = styled.img`
-  margin: auto;
-  padding-top: 23px;
-  padding-bottom: 10px;
-`;
-
-const TextDiv = styled.div`
-  display: flex;
-`;
 const Footer = () => {
   return (
     <>
       <FooterDiv>
-        <FestivalName>2022 동덕여자대학교 대동제 [ 동.동.동 ]</FestivalName>
-        <TextDiv>
-          <PartDiv>
-            <PartName>기획</PartName>
-            <PartName>개발</PartName>
-            <PartName>UX / UI</PartName>
-          </PartDiv>
-          <NameDiv>
-            <NameText>동덕여자대학교 축제 운영 위원회 </NameText>
-            <NameText>동덕여자대학교 멋쟁이 사자처럼</NameText>
-            <NameText>동덕여자대학교 멋쟁이 사자처럼</NameText>
-          </NameDiv>
-        </TextDiv>
-        <LogoImg src="img/FooterLogo_1.svg" />
+        <PartDiv>
+          <TextDiv>축제 총 기획</TextDiv>
+          <NameDiv>동덕여자대학교 축제 운영 위원회</NameDiv>
+        </PartDiv>
+        <hr />
+        <MainLogo>
+          2022 동덕여자대학교 대동제
+          <br />[ 동.동.동]
+        </MainLogo>
+        <hr />
+        <PartDiv>
+          <TextDiv>축제 웹 제작</TextDiv>
+          <NameDiv>동덕여자대학교 멋쟁이 사자처럼</NameDiv>
+        </PartDiv>
+        <img
+          src="img/insta.png"
+          onClick={() =>
+            window.open("https://www.instagram.com/dongduk_likelion", "_blank")
+          }
+        />
       </FooterDiv>
     </>
   );
