@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -47,8 +47,18 @@ const BtnImg = styled.img`
   }
 `;
 
+const EventMapLink = styled.div`
+  font-weight: 600;
+  font-size: 18px;
+  color: #8b2842;
+  padding: 30px 0 10px;
+  @media only screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+`;
+
 const EventText = styled.div`
-  padding: 56px 0 24px;
+  padding: 10px 0 24px;
   font-weight: 400;
   color: #8b2842;
   @media only screen and (max-width: 600px) {
@@ -76,6 +86,7 @@ const EventImgDiv = styled.div`
     height: 100px;
   }
 `;
+
 const EventImg = styled.img`
   width: 100%;
   height: 100%;
@@ -109,21 +120,21 @@ const EventIntro = styled.p`
   }
 `;
 
-const SearchPreview = styled.div`
-  border: 2px solid #d09b2c;
-  border-radius: 5px;
+const NoEvent = styled.div`
+  font-weight: 400;
+  color: #8b2842;
+  @media only screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 function EventHome() {
   const [eData, setEData] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const navigate = useNavigate();
-  const [showSearch, setShowSearch] = useState([]);
-  const [showSearchBox, setShowSearchBox] = useState(false);
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/").then((response) => {
       setEData(response.data);
-      setShowSearch(response.data);
     });
   }, []);
 
@@ -132,11 +143,14 @@ function EventHome() {
       <SearchForm
         onSubmit={(event) => {
           event.preventDefault();
+          // history.push({
+          //   pathname: "/event",
+          //   search: "",
+          // });
           axios
             .get(`http://127.0.0.1:8000/?search=${inputSearch}`)
             .then((response) => {
               setEData(response.data);
-              setShowSearchBox(false);
             });
         }}
       >
@@ -145,48 +159,40 @@ function EventHome() {
           value={inputSearch}
           onChange={(event) => {
             setInputSearch(event.target.value);
-            axios
-              .get(`http://127.0.0.1:8000/?search=${event.target.value}`)
-              .then((response) => {
-                setShowSearch(response.data);
-              });
           }}
-          onFocus={() => setShowSearchBox(true)}
-          onBlur={() => setShowSearchBox(false)}
         />
         <InputBtn>
           <BtnImg src={require("../img/searchIcon.png")} />
         </InputBtn>
       </SearchForm>
-      {showSearchBox ? (
-        <SearchPreview>
-          {showSearch.map((result) => (
-            <div key={`${result.eventTitle}`}>{result.eventTitle}</div>
-          ))}
-        </SearchPreview>
-      ) : (
-        ""
-      )}
-
+      <EventMapLink>
+        <Link to={"/eventmap"} style={{ borderBottom: "1px solid" }}>
+          부스 / 주점 지도 바로가기
+        </Link>
+      </EventMapLink>
       <EventText>총 {eData.length}개의 이벤트</EventText>
       <EventList>
-        {eData.map((list, index) => (
-          <EventBox key={index}>
-            <EventImgDiv>
-              <EventImg src={list.eventImg} />
-            </EventImgDiv>
-            <EventInfo>
-              <EventTitle
-                onClick={() => {
-                  navigate(`/event/detail${index + 1}`);
-                }}
-              >
-                {list.eventTitle}
-              </EventTitle>
-              <EventIntro>{list.eventIntro}</EventIntro>
-            </EventInfo>
-          </EventBox>
-        ))}
+        {eData.length ? (
+          eData.map((list, index) => (
+            <EventBox key={index}>
+              <EventImgDiv>
+                <EventImg src={list.eventImg} />
+              </EventImgDiv>
+              <EventInfo>
+                <EventTitle
+                  onClick={() => {
+                    navigate(`/event/detail${index + 1}`);
+                  }}
+                >
+                  {list.eventTitle}
+                </EventTitle>
+                <EventIntro>{list.eventIntro}</EventIntro>
+              </EventInfo>
+            </EventBox>
+          ))
+        ) : (
+          <NoEvent>검색결과 없음</NoEvent>
+        )}
       </EventList>
     </EventHomeBox>
   );

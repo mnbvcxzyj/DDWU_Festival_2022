@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EventDetail from "./event/EventDetail";
 import EventHome from "./event/EventHome";
+import EventMap from "./event/EventMap";
 import { GlobalStyle } from "./style";
 import SomTalk from "./talk/SomTalk";
 
@@ -12,7 +13,8 @@ function App() {
         <Routes>
           <Route path="/event" element={<EventHome />} />
           <Route path="/event/detail:id" element={<EventDetail />} />
-          <Route path="/" element={<SomTalk />} />
+          <Route path="/eventmap" element={<EventMap />} />
+          <Route path="/somtalk" element={<SomTalk />} />
         </Routes>
       </div>
     </BrowserRouter>

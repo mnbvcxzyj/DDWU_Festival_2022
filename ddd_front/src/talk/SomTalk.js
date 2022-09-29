@@ -4,49 +4,53 @@ import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
 const SomTalkBox = styled.div`
-  padding: 24px;
-`;
-
-const SomTalkHeader = styled.div`
-  font-weight: 700;
-`;
-
-const SomTalkTitle = styled.h2`
-  text-transform: uppercase;
-  color: #8b2842;
-  font-size: 28px;
-  text-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  padding-bottom: 10px;
-  @media only screen and (max-width: 700px) {
-    padding-bottom: 4px;
-  }
+  // padding: 24px 24px 0;
 `;
 
 const SomTalkDes = styled.p`
-  color: #b0687b;
+  background: #8b2842;
+  color: white;
   font-weight: bold;
-  text-shadow: 4px 4px 4px rgba(176, 104, 123, 0.25);
+  margin: 16px 24px;
+  padding: 16px 22.5px;
+  line-height: 1.6;
+  border-radius: 10px;
   @media only screen and (min-width: 700px) {
+    font-size: 18px;
+    width: 350px;
+  }
+  width: 65%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const SomTalkFormBox = styled.div`
+  position: fixed;
+  max-width: 1280px;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  background: #8b2842;
+  width: 100%;
+  bottom: 0;
+  @media only screen and (min-width: 700px) {
+    padding: 20px 28px;
     font-size: 18px;
   }
 `;
 
 const SomTalkForm = styled.form`
   display: flex;
-  align-items: flex-end;
-  margin: 30px 0;
-  background: #ffffff;
-  border: 2px solid #e0c895;
-  box-shadow: 4px 4px 4px rgba(224, 200, 149, 0.25);
-  padding: 15px 20px;
+  align-items: center;
   border-radius: 10px;
-  box-sizing: border-box;
-  height: 120px;
   line-height: 120%;
   @media only screen and (min-width: 700px) {
-    height: 180px;
     line-height: 180%;
   }
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
 `;
 
 const SomTalkBtn = styled.button`
@@ -58,20 +62,32 @@ const SomTalkTextArea = styled.textarea`
   all: unset;
   resize: none;
   width: 100%;
-  height: 100%;
-  padding-right: 5px;
+  height: 40px;
+  &::placeholder {
+    color: #e5ddcc;
+  }
 `;
 
 const SomTalkMain = styled.ul`
+  margin: 0 24px;
+  background: #ffffff;
+  border: 2px solid #e0c895;
+  box-shadow: 4px 4px 4px rgba(224, 200, 149, 0.25);
+  border-radius: 10px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 0;
   height: calc(100vh - 280px);
   @media only screen and (min-width: 700px) {
-    height: calc(100vh - 350px);
+    height: calc(100vh - 300px);
     &::-webkit-scrollbar {
       display: none; /* Chrome, Safari, Opera*/
     }
+    border: 3px solid #e0c895;
   }
   position: relative;
+  align-items: flex-end;
 `;
 
 const SomTalkContent = styled.li`
@@ -91,69 +107,13 @@ const SomTalkContent = styled.li`
 `;
 
 const TextBold = styled.span`
-  color: #8b2842;
+  color: #e0c895;
   @media only screen and (max-width: 700px) {
     font-size: 18px;
   }
 `;
 
-const SomTalkTop = styled.div`
-  position: sticky;
-  bottom: 10px;
-  right: 5px;
-  float: right;
-  cursor: pointer;
-  scroll-behavior: smooth;
-`;
-
 function SomTalk() {
-  const [ani, setAni] = useState();
-  const [comment, setComment] = useState([
-    {
-      id: 1,
-      comment: "더 높이 날 데려다 줘잠에 든 도시 타오른 밤이식기",
-    },
-    {
-      id: 2,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄게요올라 올라 라라라 요올라 올라 라라 라요 라요올라 올라 라라 라올라 올라 라라잔뜩 취한 듯한 기분좀 더 높이 날 데려다 줘잠에 든 도시 타오른 밤이식기전에 한번만 더열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄게요에오 에오열이 올라요에오 에오",
-    },
-    {
-      id: 3,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄게요올라 올라 라라라 요올라 올라 라라 라요 라요올라 올라 라라 라올라 올라 라라잔뜩 취한 듯한 기분좀 더 높이 날 데려다 줘잠에 든 도시 타오",
-    },
-    {
-      id: 4,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄기분좀 더 높이 날 데려다 줘잠에 든 도시 타오",
-    },
-    {
-      id: 5,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄게요올라 올라 라라라 요올라 올라 라라 라요 라요올라 올라 라라 라올라 올라 라라잔뜩 취한 듯한 기분좀 더 높이 날 데려다 줘잠에 든 도시 타오",
-    },
-    {
-      id: 6,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져 줄게요올라 올라 라라라 요올라 올",
-    },
-    {
-      id: 7,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나",
-    },
-    {
-      id: 8,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진",
-    },
-    {
-      id: 9,
-      comment:
-        "그대 아무런 말도 하지 마요이 맘은 여전히 그대로예요따가운 햇살 그 아래 우리이 분위기 난 좋아어떡해 나 숨이 가빠져요그렇게 쳐다보면열이 올라요 에오뜨거워진 온도 탓일까요약이 올라요 에오한번쯤은 무너져줄게요에오 에오열이 올라요에오 에오여름 밤 열긴 밤새 식지 않고나는 자꾸 위험한 춤을 춰요따가운 햇살 적당한 바람이 분위기 난 좋아요어떡해 나 이제 못 참아요그렇게 쳐다보면열이 올라요 에오뜨거워진",
-    },
-  ]);
   const bgColor = [
     "linear-gradient(0deg, #D9B0BB, #D9B0BB), linear-gradient(0deg, #EED8DE, #EED8DE), linear-gradient(0deg, #D09B2C, #D09B2C), linear-gradient(0deg, #D09B2C, #D09B2C), #D09B2C",
     "#E0C895",
@@ -169,53 +129,61 @@ function SomTalk() {
       return axios
         .get("http://127.0.0.1:8000/posts/comments")
         .then((response) => {
-          return response.data.reverse();
+          return response.data;
         });
     },
     {
       // refetchOnWindowFocus: false, // 창을 새로 펼칠 때
       // refetchInterval: 1000, // 1초마다 갱신 - 폴링; 실시간처럼 보이게 하는 것. 일정한 주기를 가지고 응답ㅇ르 주고받는 방식을 폴링 방식이라고 한다.
-      onSuccess: (data) => {
-        // 성공시 호출
-        setComment(data);
-      },
     }
   );
   const queryClient = useQueryClient();
   const { mutate, isLoading, isError, errors, isSuccess } = useMutation(
     (comment) => {
-      return axios
-        .post("http://127.0.0.1:8000/posts/comments", { comment })
-        .then((response) => {
-          // return response.data.reverse();
-        });
+      return axios.post("http://127.0.0.1:8000/posts/comments", { comment });
     },
     {
-      onSuccess: (data, vari, ctext) => {
+      onSuccess: () => {
         queryClient.invalidateQueries("talk"); //보통 새로운 데이터가 생겼어도 정해진 시간에 도달하지 않으면 화면에 보여지지 않는데 이를 해결하기 위함
       },
     }
   );
-  // srcoll-event
+  useEffect(() => {
+    talkRef.current.scrollTop = talkRef.current.scrollHeight;
+  }, [data]);
 
   return (
     <SomTalkBox>
-      <SomTalkHeader>
-        <SomTalkTitle>som talk</SomTalkTitle>
-        <SomTalkDes>
-          2022년 가을 , 하나로 (<TextBold>동</TextBold>) 뜨겁게 (
-          <TextBold>동</TextBold>) 움직인 (<TextBold>동</TextBold>) 솜솜이들의
-          기록
-        </SomTalkDes>
+      <SomTalkDes>
+        <span>2022년 가을 ,</span>
+        <span>
+          하나로 (<TextBold>동</TextBold>) 뜨겁게 (<TextBold>동</TextBold>)
+          움직인 (<TextBold>동</TextBold>)
+        </span>
+        <span>솜솜이들의 기록</span>
+      </SomTalkDes>
+      <SomTalkMain ref={talkRef}>
+        {status === "success"
+          ? data.map((cm, index) => (
+              <SomTalkContent bg={bgColor[index % 5]} key={index}>
+                {cm.comment}
+              </SomTalkContent>
+            ))
+          : ""}
+      </SomTalkMain>
+
+      <SomTalkFormBox>
         <SomTalkForm
           onSubmit={(event) => {
             event.preventDefault();
             mutate(sendCmt);
             setSendCmt("");
+            talkRef.current.scrollTop = talkRef.current.scrollHeight;
+            console.dir(talkRef.current.scrollHeight, talkRef.current);
           }}
         >
           <SomTalkTextArea
-            placeholder="| 솜솜이들에게 정하고 싶은 한 줄(400자 이내)"
+            placeholder="| 솜솜이들에게 정하고 싶은 한 줄(400자)"
             maxLength="400"
             value={sendCmt}
             onChange={(event) => {
@@ -226,25 +194,7 @@ function SomTalk() {
             <img src={require("../img/cmtBtn.png")} />
           </SomTalkBtn>
         </SomTalkForm>
-      </SomTalkHeader>
-      <div ref={talkRef}>
-        <SomTalkMain>
-          {status === "success"
-            ? data.map((cm, index) => (
-                <SomTalkContent bg={bgColor[index % 5]} key={index}>
-                  {cm.comment}
-                </SomTalkContent>
-              ))
-            : ""}
-          <SomTalkTop
-            onClick={() => {
-              talkRef.current.firstChild.scrollTop = 0;
-            }}
-          >
-            <img src={require("../img/arrowUp.png")} />
-          </SomTalkTop>
-        </SomTalkMain>
-      </div>
+      </SomTalkFormBox>
     </SomTalkBox>
   );
 }

@@ -79,14 +79,7 @@ const ORImg = styled.img`
 
 function EventDetail() {
   const params = useParams();
-  const [dt, setDt] = useState({
-    eventImg:
-      "https://a.cdn-hotels.com/gdcs/production93/d1197/eb5f6d13-549d-4513-beef-c6ca685f5610.jpg",
-    eventTitle: "동동동",
-    eventIntro: "어서에오서오",
-    eventGuide: "어서에오서오ff",
-    eventAttention: "사람 많은 주의",
-  });
+  const [dt, setDt] = useState({});
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/${params.id}`).then((response) => {
       setDt(response.data);
