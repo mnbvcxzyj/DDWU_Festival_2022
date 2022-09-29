@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useTransition, animated, config } from "react-spring";
 
-const SomTalkBox = styled.div`
-  // padding: 24px 24px 0;
-`;
+const SomTalkBox = styled.div``;
 
 const SomTalkDes = styled.p`
   background: #8b2842;
@@ -74,7 +73,8 @@ const SomTalkMain = styled.ul`
   border: 2px solid #e0c895;
   box-shadow: 4px 4px 4px rgba(224, 200, 149, 0.25);
   border-radius: 10px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   padding: 16px 16px 0;
@@ -104,6 +104,13 @@ const SomTalkContent = styled.li`
     line-height: 16px;
     margin-bottom: 20px;
   }
+
+  @media only screen and (max-width: 700px) {
+    max-width: 200px;
+  }
+  max-width: 400px;
+  width: 50%;
+  box-sizing: border-box;
 `;
 
 const TextBold = styled.span`
@@ -123,12 +130,19 @@ function SomTalk() {
   ];
   const [sendCmt, setSendCmt] = useState("");
   const talkRef = useRef();
+  const [newCmt, setNewCmt] = useState({});
   const { status, data, error } = useQuery(
     "talk",
     () => {
       return axios
         .get("http://127.0.0.1:8000/posts/comments")
         .then((response) => {
+          const i = response.data.length - 1;
+          setNewCmt({
+            ...response.data[i],
+            idx: i,
+            op: 0.4,
+          });
           return response.data;
         });
     },
@@ -152,6 +166,14 @@ function SomTalk() {
     talkRef.current.scrollTop = talkRef.current.scrollHeight;
   }, [data]);
 
+  const tarns = useTransition(newCmt, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    update: { opacity: 1 },
+    config: config.molasses,
+    delay: 200,
+  });
+
   return (
     <SomTalkBox>
       <SomTalkDes>
@@ -163,13 +185,25 @@ function SomTalk() {
         <span>솜솜이들의 기록</span>
       </SomTalkDes>
       <SomTalkMain ref={talkRef}>
-        {status === "success"
-          ? data.map((cm, index) => (
+        {status === "success" ? (
+          data.map((cm, index) =>
+            index === newCmt.idx ? (
+              tarns(({ opacity }, tlk) => (
+                <SomTalkContent bg={bgColor[tlk.idx % 5]}>
+                  <animated.div style={{ opacity: opacity.update(tlk.op) }}>
+                    {tlk.comment}
+                  </animated.div>
+                </SomTalkContent>
+              ))
+            ) : (
               <SomTalkContent bg={bgColor[index % 5]} key={index}>
                 {cm.comment}
               </SomTalkContent>
-            ))
-          : ""}
+            )
+          )
+        ) : (
+          <div>df</div>
+        )}
       </SomTalkMain>
 
       <SomTalkFormBox>
@@ -179,7 +213,6 @@ function SomTalk() {
             mutate(sendCmt);
             setSendCmt("");
             talkRef.current.scrollTop = talkRef.current.scrollHeight;
-            console.dir(talkRef.current.scrollHeight, talkRef.current);
           }}
         >
           <SomTalkTextArea

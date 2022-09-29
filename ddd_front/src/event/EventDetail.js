@@ -120,7 +120,13 @@ function EventDetail() {
             <span>문의사항</span>
           </EventInfoTitle>
           <EventInfoChat>
-            <a href="https://open.kakao.com/o/sRAKXZxe">오픈채팅</a>
+            <div
+              onClick={() => {
+                window.open("https://open.kakao.com/o/sRAKXZxe");
+              }}
+            >
+              오픈채팅
+            </div>
 
             <ORImg src={require("../img/openchat.png")} />
           </EventInfoChat>
