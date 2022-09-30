@@ -27,7 +27,7 @@ const EventTitle = styled.h2`
   font-weight: 400;
   font-size: 24px;
   text-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  padding: 28px 0 16px;
+  padding: 20px 16px 40px;
   @media only screen and (max-width: 500px) {
     padding: 24px 0 12px;
     font-size: 20px;
@@ -37,22 +37,32 @@ const EventTitle = styled.h2`
 const EventInfoList = styled.ul``;
 const EventInfo = styled.li``;
 const EventInfoTitle = styled.div`
-  color: #b0687b;
-  border-bottom: 1px solid #b0687b;
+  background: rgba(224, 200, 149, 0.25);
+  color: #8b2842;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  font-size: 20px;
-  gap: 5px;
+  font-size: 22px;
+  gap: 12px;
   text-shadow: 4px 4px 4px rgba(176, 104, 123, 0.25);
   font-weight: 400;
   @media only screen and (max-width: 700px) {
-    font-size: 16px;
+    font-size: 18px
+    padding: 4px 8px;;
+  }
+`;
+
+const EventListImg = styled.img`
+  @media only screen and (max-width: 700px) {
+    width: 28px;
+    height: 28px;
   }
 `;
 
 const EventInfoDes = styled.div`
   padding: 20px 16px 40px;
   font-weight: 400;
+  font-size: 18px;
   @media only screen and (max-width: 700px) {
     font-size: 14px;
     padding: 12px 8px 40px;
@@ -70,10 +80,18 @@ const EventInfoChat = styled.div`
   }
 `;
 
-const ORImg = styled.img`
+const QRImg = styled.img`
   @media only screen and (min-width: 700px) {
     width: 100px;
     height: 100px;
+  }
+`;
+
+const QRLink = styled.div`
+  word-break: break-all;
+  cursor: pointer;
+  &:hover {
+    color: #8b2842;
   }
 `;
 
@@ -91,44 +109,50 @@ function EventDetail() {
       <EventImgDiv>
         <EventImg src={dt.eventImg} />
       </EventImgDiv>
-      <EventTitle>{dt.eventTitle}</EventTitle>
       <EventInfoList>
         <EventInfo>
           <EventInfoTitle>
-            <img src={require("../img/liststyle.png")} />
+            <EventListImg src={require("../img/liststyle.png")} />
+            <span>부스/이벤트 명</span>
+          </EventInfoTitle>
+          <EventTitle>{dt.eventTitle}</EventTitle>
+        </EventInfo>
+        <EventInfo>
+          <EventInfoTitle>
+            <EventListImg src={require("../img/liststyle.png")} />
             <span>한 줄 소개</span>
           </EventInfoTitle>
           <EventInfoDes>{dt.eventIntro}</EventInfoDes>
         </EventInfo>
         <EventInfo>
           <EventInfoTitle>
-            <img src={require("../img/liststyle.png")} />
+            <EventListImg src={require("../img/liststyle.png")} />
             <span>안내</span>
           </EventInfoTitle>
           <EventInfoDes>{dt.eventGuide}</EventInfoDes>
         </EventInfo>
         <EventInfo>
           <EventInfoTitle>
-            <img src={require("../img/liststyle.png")} />
+            <EventListImg src={require("../img/liststyle.png")} />
             <span>주의사항</span>
           </EventInfoTitle>
           <EventInfoDes>{dt.eventAttention}</EventInfoDes>
         </EventInfo>
         <EventInfo>
           <EventInfoTitle>
-            <img src={require("../img/liststyle.png")} />
+            <EventListImg src={require("../img/liststyle.png")} />
             <span>문의사항</span>
           </EventInfoTitle>
           <EventInfoChat>
-            <div
+            <QRLink
               onClick={() => {
                 window.open("https://open.kakao.com/o/sRAKXZxe");
               }}
             >
-              오픈채팅
-            </div>
+              https://open.kakao.com/o/sRAKXZxe
+            </QRLink>
 
-            <ORImg src={require("../img/openchat.png")} />
+            <QRImg src={require("../img/openchat.png")} />
           </EventInfoChat>
         </EventInfo>
       </EventInfoList>

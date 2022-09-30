@@ -105,12 +105,12 @@ const SomTalkContent = styled.li`
     margin-bottom: 20px;
   }
 
-  @media only screen and (max-width: 700px) {
-    max-width: 200px;
-  }
-  max-width: 400px;
-  width: 50%;
-  box-sizing: border-box;
+  // @media only screen and (max-width: 700px) {
+  //   max-width: 200px;
+  // }
+  // max-width: 400px;
+  // width: 50%;
+  // box-sizing: border-box;
 `;
 
 const TextBold = styled.span`
@@ -189,11 +189,11 @@ function SomTalk() {
           data.map((cm, index) =>
             index === newCmt.idx ? (
               tarns(({ opacity }, tlk) => (
-                <SomTalkContent bg={bgColor[tlk.idx % 5]}>
-                  <animated.div style={{ opacity: opacity.update(tlk.op) }}>
+                <animated.div style={{ opacity: opacity.update(tlk.op) }}>
+                  <SomTalkContent bg={bgColor[tlk.idx % 5]}>
                     {tlk.comment}
-                  </animated.div>
-                </SomTalkContent>
+                  </SomTalkContent>
+                </animated.div>
               ))
             ) : (
               <SomTalkContent bg={bgColor[index % 5]} key={index}>
