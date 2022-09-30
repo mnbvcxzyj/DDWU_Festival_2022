@@ -104,13 +104,8 @@ const SomTalkContent = styled.li`
     line-height: 16px;
     margin-bottom: 20px;
   }
-
-  // @media only screen and (max-width: 700px) {
-  //   max-width: 200px;
-  // }
-  // max-width: 400px;
-  // width: 50%;
-  // box-sizing: border-box;
+  width: 64%;
+  box-sizing: border-box;
 `;
 
 const TextBold = styled.span`
@@ -185,25 +180,29 @@ function SomTalk() {
         <span>솜솜이들의 기록</span>
       </SomTalkDes>
       <SomTalkMain ref={talkRef}>
-        {status === "success" ? (
-          data.map((cm, index) =>
-            index === newCmt.idx ? (
-              tarns(({ opacity }, tlk) => (
-                <animated.div style={{ opacity: opacity.update(tlk.op) }}>
+        {status === "success"
+          ? data.map((cm, index) =>
+              index === newCmt.idx ? (
+                tarns(({ opacity }, tlk) => (
                   <SomTalkContent bg={bgColor[tlk.idx % 5]}>
-                    {tlk.comment}
+                    <animated.div
+                      style={{
+                        opacity: opacity.update(tlk.op),
+                        backgroundColor: `${bgColor[tlk.idx % 5]}`,
+                      }}
+                      key={newCmt.idx}
+                    >
+                      {tlk.comment}
+                    </animated.div>
                   </SomTalkContent>
-                </animated.div>
-              ))
-            ) : (
-              <SomTalkContent bg={bgColor[index % 5]} key={index}>
-                {cm.comment}
-              </SomTalkContent>
+                ))
+              ) : (
+                <SomTalkContent bg={bgColor[index % 5]} key={index}>
+                  {cm.comment}
+                </SomTalkContent>
+              )
             )
-          )
-        ) : (
-          <div>df</div>
-        )}
+          : ""}
       </SomTalkMain>
 
       <SomTalkFormBox>
