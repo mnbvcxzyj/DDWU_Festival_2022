@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import DefaultIcon from "./img/menu_none.png";
-import ClickIcon from "./img/menu_click.png";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGhost } from "@fortawesome/free-solid-svg-icons";
 const HeaderDiv = styled.div`
   max-width: 1280px;
   margin: 0 auto;
@@ -18,10 +17,12 @@ const HeaderDiv = styled.div`
 const HamburgerToggle = styled.div`
   padding: 1rem 1rem;
   cursor: pointer;
+
+  img {
+    width: 32px;
+  }
 `;
 
-// 가운데 정렬이 코드로 안 먹음
-// logo
 const MainLogo = styled.div`
   color: rgba(224, 200, 149, 1);
   width: 160px;
@@ -30,27 +31,28 @@ const MainLogo = styled.div`
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
   font-size: 160%;
   padding: 1rem 1rem;
-  font-weight: 540;
+  font-weight: 550;
 `;
 
 const NavMenu = styled.ul`
   list-style: none;
-
+  text-align: center;
   .show {
-    width: 300px;
     position: fixed;
-    height: 100%;
+    width: 300px;
     top: 0px;
     left: 0px;
-    margin-bottom: 10%;
+    height: 100%;
     transition: 1s;
     background-color: rgba(139, 40, 66, 1);
   }
 
   .hide {
-    width: 300px;
     position: fixed;
+    width: 300px;
+    top: 0px;
     left: -300px;
+    height: 100%;
     transition: 1.2s;
   }
 
@@ -59,13 +61,14 @@ const NavMenu = styled.ul`
     font-weight: 700;
     font-size: 20px;
     display: inline-block;
-    margin-right: 3%;
-    /* line-height: 50px; */
+    margin-left: 13%;
+    margin-right: 19%;
+    text-decoration: none;
   }
 
   ul li img {
     vertical-align: middle;
-    width: 36px;
+    width: 38px;
   }
 `;
 
@@ -79,9 +82,11 @@ const NavLogo = styled.div`
 `;
 
 const BackImgDiv = styled.div`
-  float: left;
-  /* position: relative; */
-  margin: 50px 0 0 30px;
+  margin-top: 48px;
+  img {
+    padding-left: 30px;
+    width: 32px;
+  }
 `;
 
 const GhostSomImg = styled.img`
@@ -90,14 +95,13 @@ const GhostSomImg = styled.img`
 `;
 
 const ListDiv = styled.div`
-  text-align: center;
   line-height: 70px;
-  justify-content: space-between;
-`;
-
-const ListImg = styled.img`
-  padding-right: 10px;
-  width: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0 auto;
 `;
 
 const Header = () => {
@@ -106,6 +110,7 @@ const Header = () => {
 
   const activeStyle = {
     color: "rgba(224, 200, 149, 1)",
+    textdecoration: "none",
   };
 
   const nonActiveStyle = {
@@ -124,7 +129,7 @@ const Header = () => {
         <ul className={isOpen ? "show" : "hide"}>
           <NavLogo>同 動 烔</NavLogo>
           <BackImgDiv>
-            <img src="img/toggle_back.png" onClick={() => setOpen(!isOpen)} />
+            <img src="img/back_toggle.png" onClick={() => setOpen(!isOpen)} />
           </BackImgDiv>
           <ListDiv>
             <NavLink
@@ -133,15 +138,9 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activeStyle : nonActiveStyle
               }
-              onClick={() => {
-                setOpen(!isOpen);
-                setClick(!isClick);
-              }}
+              onClick={() => setOpen(!isOpen)}
             >
-              <li>
-                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
-                HOME
-              </li>
+              <li>HOME</li>
             </NavLink>
             <NavLink
               to={"/introduce"}
@@ -149,15 +148,10 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activeStyle : nonActiveStyle
               }
-              onClick={() => {
-                setOpen(!isOpen);
-                setClick(!isClick);
-              }}
+              onClick={() => setOpen(!isOpen)}
             >
-              <li>
-                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
-                INTRODUCE
-              </li>
+              {" "}
+              <li> INTRODUCE</li>
             </NavLink>
             <NavLink
               to={"/timetable"}
@@ -165,13 +159,11 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activeStyle : nonActiveStyle
               }
-              onClick={() => {
-                setOpen(!isOpen);
-                setClick(!isClick);
-              }}
+              onClick={() => setOpen(!isOpen)}
             >
               <li>
-                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                {" "}
+                {/* <FontAwesomeIcon icon={faGhost} /> */}
                 TIMETABLE
               </li>
             </NavLink>
@@ -181,13 +173,12 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activeStyle : nonActiveStyle
               }
-              onClick={() => {
-                setOpen(!isOpen);
-                setClick(!isClick);
-              }}
+              onClick={() => setOpen(!isOpen)}
             >
-              <ListImg src={isClick ? ClickIcon : DefaultIcon} />
-              BOOTH & EVENT
+              <li>
+                {/* <FontAwesomeIcon icon={faGhost} /> */}
+                BOOTH & EVENT
+              </li>
             </NavLink>
             <NavLink
               to={"/somtalk"}
@@ -195,18 +186,15 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activeStyle : nonActiveStyle
               }
-              onClick={() => {
-                setOpen(!isOpen);
-                setClick(!isClick);
-              }}
+              onClick={() => setOpen(!isOpen)}
             >
               <li>
-                <ListImg src={isClick ? ClickIcon : DefaultIcon} />
+                {/* <FontAwesomeIcon icon={faGhost} /> */}
                 SOM TALK
               </li>
             </NavLink>
           </ListDiv>
-          <GhostSomImg src="img/ghostSomSom.svg" />
+          <GhostSomImg src="img/ghostsom.png" />
         </ul>
       </NavMenu>
     </>

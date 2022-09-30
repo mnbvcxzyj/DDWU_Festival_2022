@@ -7,6 +7,7 @@ import Test2 from "./pages/TestPage/Test2";
 import Test3 from "./pages/TestPage/Test3";
 import Test4 from "./pages/TestPage/Test4";
 import Test5 from "./pages/TestPage/Test5";
+import TimeTable from "./pages/TimeTable/TimeTable";
 function App() {
   return (
     <BrowserRouter>
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Test1 value="1" />} />
         <Route path="/introduce" element={<Test2 />} />
-        <Route path="/timetable" element={<Test3 />} />
+        <Route path="/timetable" element={<TimeTable />} />
         <Route path="/booth_event" element={<Test4 />} />
         <Route path="/somtalk" element={<Test5 />} />
       </Routes>

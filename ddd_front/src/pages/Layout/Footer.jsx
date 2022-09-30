@@ -68,7 +68,7 @@ const Footer = () => {
         <hr />
         <MainLogo>
           2022 동덕여자대학교 대동제
-          <br />[ 동.동.동]
+          <br />[ 동.동.동 ]
         </MainLogo>
         <hr />
         <PartDiv>
