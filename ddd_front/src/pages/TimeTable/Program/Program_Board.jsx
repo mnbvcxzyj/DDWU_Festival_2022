@@ -54,17 +54,22 @@ const Program_Board = () => {
   // getDate() : 바로 날짜로
   // getDay()는 요일에 해당하는 숫자 (수-3 목-4 금-5)
   // const selectDay = new Date();
-  // const pickDay = selectDay.getDate();
+  // const pickDay = selectDay.getDay();
+  // const [isToday, setIsToday] = useState(pickDay);
+
   const dayTabArr = [
     {
+      id: 3,
       dayTitle: "05 . WED",
       dayContent: <First_ddd />,
     },
     {
+      id: 4,
       dayTitle: "06 . WED",
       dayContent: <Second_ddd />,
     },
     {
+      id: 5,
       dayTitle: "07 . WED",
       dayContent: <Third_ddd />,
     },
