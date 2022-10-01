@@ -12,35 +12,26 @@ const MapImgDiv = styled.div`
 const MapHeaderImg = styled.div`
   height: 120px;
   position: relative;
+  font-weight: 700;
 `;
 
 const Title = styled.div`
   position: absolute;
   top: 20px;
-  width: 130px;
-  height: 23px;
   margin-left: 5%;
-  font-weight: 700;
   font-size: 20px;
-  line-height: 23px;
-  letter-spacing: -0.333333px;
   color: #ffffff;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
-const Contents = styled.text`
+const Contents = styled.div`
   position: absolute;
   top: 58px;
-  width: 350px;
-  height: 32px;
-  margin-left: 5%;
-  font-weight: 700;
   font-size: 14px;
-  line-height: 16px;
-  letter-spacing: -0.333333px;
+  margin-left: 5%;
   color: #fffcf6;
+  line-height: 16px;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  text-align: left;
 `;
 
 const MapImg = styled.img`
@@ -56,12 +47,12 @@ const MapImg = styled.img`
 
 const MapInfo = styled.div`
   width: 80%;
-  @media only screen and (max-width: 1000px) {
-    width: 100%;
-  }
   border: 2px solid #e0c895;
   border-radius: 0px 0px 10px 10px;
   border-top: 0;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const MapInfoRow = styled.div`
   display: flex;
@@ -108,6 +99,7 @@ function EventMap() {
         <img
           src={require("../img/TopImg.png")}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          alt="우리학교"
         />
       </MapHeaderImg>
       <MapImgDiv>

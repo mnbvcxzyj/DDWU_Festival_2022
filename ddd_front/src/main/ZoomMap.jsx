@@ -7,7 +7,6 @@ const Size = styled.div`
   width: 323px;
 `;
 
-//css 퍼센트 내 맘대로 바꿈
 function Zoom() {
   return (
     <TransformWrapper initialScale={1} minScale={1} maxScale={10}>
@@ -21,6 +20,7 @@ function Zoom() {
               objectFit: "cover",
               borderRadius: "3% 3% 0% 0%",
             }}
+            alt="지도"
           />
         </Size>
       </TransformComponent>

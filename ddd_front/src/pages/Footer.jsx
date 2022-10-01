@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const FooterDiv = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   width: 100%;
   z-index: 1;
   display: flex;
@@ -33,7 +30,6 @@ const TextDiv = styled.div`
   font-weight: 700;
   font-size: 12px;
   line-height: 25px;
-  letter-spacing: -0.333333px;
   color: #d9b0bb;
   text-align: center;
 `;
@@ -44,7 +40,6 @@ const NameDiv = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 25px;
-  letter-spacing: -0.333333px;
   color: #d9b0bb;
 `;
 
@@ -53,7 +48,6 @@ const MainLogo = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 19px;
-  letter-spacing: -0.333333px;
   color: #ffffff;
 `;
 
@@ -80,6 +74,7 @@ const Footer = () => {
           onClick={() =>
             window.open("https://www.instagram.com/dongduk_likelion", "_blank")
           }
+          alt="인스타"
         />
       </FooterDiv>
     </>

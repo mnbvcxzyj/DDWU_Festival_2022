@@ -23,8 +23,6 @@ const Background = styled.div`
   margin-bottom: 130px;
 `;
 
-//목화 뭉탱이 이미지 // + 학교 이미지로 수정
-//margin-bottom: 픽셀 조정해서 위치 바꿈
 const GroupIMG = styled.div`
   position: relative;
   width: 343.98px;
@@ -32,7 +30,6 @@ const GroupIMG = styled.div`
   margin: 0 auto 200px;
 `;
 
-//원형 학교사진
 const Slide = styled.div`
   width: 240px;
   height: 280px;
@@ -42,14 +39,12 @@ const Slide = styled.div`
   top: 20px;
 `;
 
-//동덕여자대학교 2022 대동제 10.05-10.07
 const CenterDDD = styled.div`
   position: absolute;
   margin: 0 auto;
   top: 400px;
 `;
 
-//한가지동 움직일동 뜨거운모양동
 const BottomDDD = styled.div`
   position: absolute;
   margin: auto;
@@ -58,7 +53,6 @@ const BottomDDD = styled.div`
   top: 500px;
 `;
 
-//스탬프투어 div
 const StampTour = styled.div`
   position: relative;
   box-sizing: border-box;
@@ -77,8 +71,6 @@ const CampusMap = styled.div`
   margin: 0 auto;
 `;
 
-//반투명 div
-//margin-auto 없앰
 const WhiteFooter = styled.div`
   position: absolute;
   top: 188px;
@@ -89,7 +81,6 @@ const WhiteFooter = styled.div`
   border-radius: 0px 0px 10px 10px;
 `;
 
-//자주색 제목
 const Title = styled.div`
   position: absolute;
   width: 100px;
@@ -103,7 +94,6 @@ const Title = styled.div`
   color: #8b2842;
 `;
 
-//갈색 내용 글씨
 const Contents = styled.div`
   position: absolute;
   width: 300px;
@@ -141,15 +131,12 @@ const Contents2 = styled.div`
   color: #805e4a;
 `;
 
-//스탬프투어 솜솜이
-//margin-left 바꿔야 함
 const Somsom = styled.div`
   width: 100px;
   height: 92px;
   margin-left: 65%;
 `;
 
-//캠퍼스맵 솜솜이
 const Somsom2 = styled.div`
   width: 100px;
   height: 92px;
@@ -157,7 +144,6 @@ const Somsom2 = styled.div`
   margin-left: 5%;
 `;
 
-//제일 위쪽 솜솜이
 const Somsom3 = styled.div`
   position: absolute;
   width: 95.51px;
@@ -166,7 +152,6 @@ const Somsom3 = styled.div`
   margin-top: 5%;
 `;
 
-//오른쪽 비스듬한 솜솜이
 const Somsom4 = styled.div`
   position: absolute;
   width: 180px;
@@ -175,7 +160,6 @@ const Somsom4 = styled.div`
   margin-top: 85%;
 `;
 
-//왼쪽 비스듬한 솜솜이
 const Somsom5 = styled.div`
   position: absolute;
   width: 227.36px;
@@ -203,7 +187,6 @@ const Web3 = styled.div`
   height: 200px;
 `;
 
-//margin-top: 5 / 10 물어보고 결정하기
 const Text = styled.div`
   width: 350px;
   height: 28px;
@@ -218,7 +201,6 @@ const Text = styled.div`
   text-shadow: 4px 4px 4px rgba(128, 94, 74, 0.25);
 `;
 
-//맨 아래 동덕 로고
 const Logo = styled.div`
   margin-left: auto;
   margin-right: auto;
@@ -227,12 +209,12 @@ const Logo = styled.div`
   padding-top: 5%;
 `;
 
-const ColorText = styled.text`
+const ColorText = styled.span`
   color: #8b2842;
   font-weight: 700;
 `;
 
-const ColorText2 = styled.text`
+const ColorText2 = styled.span`
   color: #5f4637;
   font-weight: 700;
 `;
@@ -263,6 +245,7 @@ function Home() {
                   marginLeft: "-55%",
                   marginTop: "-35%",
                 }}
+                alt="거미줄1"
               />
             </div>
           </Web1>
@@ -276,6 +259,7 @@ function Home() {
                   height: "100%",
                   objectFit: "cover",
                 }}
+                alt="우령솜솜1"
               />
             </Somsom3>
           </div>
@@ -293,6 +277,7 @@ function Home() {
                   height: "100%",
                   objectFit: "cover",
                 }}
+                alt="유령솜솜4"
               />
             </Somsom4>
           </div>
@@ -306,6 +291,7 @@ function Home() {
               position: "relative",
               marginTop: "50px",
             }}
+            alt="학교"
           />
 
           <Slide>
@@ -318,6 +304,7 @@ function Home() {
                     height: "100%",
                     objectFit: "cover",
                   }}
+                  alt="유령솜솜5"
                 />
               </Somsom5>
             </div>
@@ -331,6 +318,7 @@ function Home() {
                 objectFit: "cover",
                 marginLeft: "32%",
               }}
+              alt="학교글씨"
             />
           </CenterDDD>
 
@@ -342,11 +330,11 @@ function Home() {
                 height: "100%",
                 objectFit: "cover",
               }}
+              alt="동동동"
             />
           </BottomDDD>
         </GroupIMG>
 
-        {/*스탬프투어 구간 시작*/}
         <Divv>
           <div data-aos="fade-up">
             <Somsom>
@@ -357,7 +345,8 @@ function Home() {
                   objectFit: "cover",
                   marginTop: "30px",
                 }}
-              ></img>
+                alt="유령솜솜2"
+              />
             </Somsom>
           </div>
         </Divv>
@@ -371,7 +360,8 @@ function Home() {
                 height: "100%",
                 objectFit: "cover",
               }}
-            ></img>
+              alt="도장"
+            />
             <WhiteFooter>
               <Title>스탬프 투어</Title>
               <Contents>
@@ -381,7 +371,6 @@ function Home() {
           </StampTour>
         </Link>
 
-        {/*캠퍼스맵 구간 시작*/}
         <Link to="/CampusMap">
           <Divv>
             <Web2>
@@ -392,9 +381,8 @@ function Home() {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    // marginLeft: "85%",
-                    // marginTop: "-40%",
                   }}
+                  alt="거미줄1"
                 />
               </div>
             </Web2>
@@ -408,7 +396,8 @@ function Home() {
                     objectFit: "cover",
                     marginTop: "30px",
                   }}
-                ></img>
+                  alt="우령솜솜3"
+                />
               </Somsom2>
             </div>
 
@@ -420,7 +409,8 @@ function Home() {
                   height: "100%",
                   objectFit: "cover",
                 }}
-              ></img>
+                alt="지도"
+              />
               <WhiteFooter>
                 <Title2>캠퍼스 맵</Title2>
                 <Contents2>학교 건물들의 위치와 구조를 한번에</Contents2>
@@ -443,6 +433,7 @@ function Home() {
               height: "100%",
               objectFit: "cover",
             }}
+            alt="로고"
           ></img>
           <Web3>
             <div data-aos="zoom-in" data-aos-duration="1000">
@@ -455,6 +446,7 @@ function Home() {
                   marginLeft: "-80%",
                   marginTop: "-50%",
                 }}
+                alt="거미줄"
               />
             </div>
           </Web3>

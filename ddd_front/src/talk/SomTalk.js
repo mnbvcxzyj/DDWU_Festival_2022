@@ -68,7 +68,7 @@ const SomTalkTextArea = styled.textarea`
 `;
 
 const SomTalkMain = styled.ul`
-  margin: 0 24px;
+  margin: 0 24px 150px;
   background: #ffffff;
   border: 2px solid #e0c895;
   box-shadow: 4px 4px 4px rgba(224, 200, 149, 0.25);
@@ -78,9 +78,9 @@ const SomTalkMain = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 16px 16px 0;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 350px);
   @media only screen and (min-width: 700px) {
-    height: calc(100vh - 300px);
+    height: calc(100vh - 370px);
     &::-webkit-scrollbar {
       display: none; /* Chrome, Safari, Opera*/
     }
@@ -126,34 +126,27 @@ function SomTalk() {
   const [sendCmt, setSendCmt] = useState("");
   const talkRef = useRef();
   const [newCmt, setNewCmt] = useState({});
-  const { status, data, error } = useQuery(
-    "talk",
-    () => {
-      return axios
-        .get("http://127.0.0.1:8000/posts/comments")
-        .then((response) => {
-          const i = response.data.length - 1;
-          setNewCmt({
-            ...response.data[i],
-            idx: i,
-            op: 0.4,
-          });
-          return response.data;
+  const { status, data } = useQuery("talk", () => {
+    return axios
+      .get("http://127.0.0.1:8000/posts/comments")
+      .then((response) => {
+        const i = response.data.length - 1;
+        setNewCmt({
+          ...response.data[i],
+          idx: i,
+          op: 0.4,
         });
-    },
-    {
-      // refetchOnWindowFocus: false, // 창을 새로 펼칠 때
-      // refetchInterval: 1000, // 1초마다 갱신 - 폴링; 실시간처럼 보이게 하는 것. 일정한 주기를 가지고 응답ㅇ르 주고받는 방식을 폴링 방식이라고 한다.
-    }
-  );
+        return response.data;
+      });
+  });
   const queryClient = useQueryClient();
-  const { mutate, isLoading, isError, errors, isSuccess } = useMutation(
+  const { mutate } = useMutation(
     (comment) => {
       return axios.post("http://127.0.0.1:8000/posts/comments", { comment });
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("talk"); //보통 새로운 데이터가 생겼어도 정해진 시간에 도달하지 않으면 화면에 보여지지 않는데 이를 해결하기 위함
+        queryClient.invalidateQueries("talk");
       },
     }
   );
@@ -174,8 +167,8 @@ function SomTalk() {
       <SomTalkDes>
         <span>2022년 가을 ,</span>
         <span>
-          하나로 (<TextBold>동</TextBold>) 뜨겁게 (<TextBold>동</TextBold>)
-          움직인 (<TextBold>동</TextBold>)
+          하나로 &#40;<TextBold>동</TextBold>&#41; 뜨겁게 &#40;
+          <TextBold>동</TextBold> &#41; 움직인 &#40;<TextBold>동</TextBold>&#41;
         </span>
         <span>솜솜이들의 기록</span>
       </SomTalkDes>
@@ -184,13 +177,12 @@ function SomTalk() {
           ? data.map((cm, index) =>
               index === newCmt.idx ? (
                 tarns(({ opacity }, tlk) => (
-                  <SomTalkContent bg={bgColor[tlk.idx % 5]}>
+                  <SomTalkContent bg={bgColor[tlk.idx % 5]} key={newCmt.idx}>
                     <animated.div
                       style={{
                         opacity: opacity.update(tlk.op),
                         backgroundColor: `${bgColor[tlk.idx % 5]}`,
                       }}
-                      key={newCmt.idx}
                     >
                       {tlk.comment}
                     </animated.div>
@@ -223,7 +215,7 @@ function SomTalk() {
             }}
           />
           <SomTalkBtn>
-            <img src={require("../img/cmtBtn.png")} />
+            <img src={require("../img/cmtBtn.png")} alt="댓글" />
           </SomTalkBtn>
         </SomTalkForm>
       </SomTalkFormBox>
