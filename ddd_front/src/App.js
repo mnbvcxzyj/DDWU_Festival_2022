@@ -4,6 +4,9 @@ import EventHome from "./event/EventHome";
 import EventMap from "./event/EventMap";
 import { GlobalStyle } from "./style";
 import SomTalk from "./talk/SomTalk";
+import Home from "./main/Home";
+import Map from "./main/Map";
+import Stamp from "./main/Map";
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
       <GlobalStyle />
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/CampusMap" element={<Map />}></Route>
+          <Route path="/Stamp" element={<Stamp />}></Route>
           <Route path="/event" element={<EventHome />} />
           <Route path="/event/detail:id" element={<EventDetail />} />
           <Route path="/eventmap" element={<EventMap />} />
