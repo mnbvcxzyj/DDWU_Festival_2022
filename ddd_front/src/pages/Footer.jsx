@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const FooterDiv = styled.div`
+const FooterDiv = styled.footer`
   padding: 10px 0;
   width: 100%;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  bottom: 0;
   background-color: rgba(139, 40, 66, 1);
-
+  position: absolute;
+  left: 0;
+  bottom: 0;
   hr {
     width: 60%;
     border: 0.1px solid #ffffff;
@@ -18,6 +19,7 @@ const FooterDiv = styled.div`
   img {
     margin: 0 auto;
     width: 25px;
+    cursor: pointer;
   }
 `;
 

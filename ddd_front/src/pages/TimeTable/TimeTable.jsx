@@ -59,9 +59,7 @@ const MenuLi = styled.li`
 const BoardDiv = styled.div``;
 const TimeTable = () => {
   const [index, setIndex] = useState(true);
-  const tabClickHandler = (index) => {
-    setIndex(index);
-  };
+
   return (
     <>
       <TimeTableDiv>

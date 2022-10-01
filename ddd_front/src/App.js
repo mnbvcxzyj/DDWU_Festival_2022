@@ -18,7 +18,14 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <div style={{ maxWidth: "1280px", margin: "0px auto" }}>
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0px auto",
+          minHeight: "100vh",
+          position: "relative",
+        }}
+      >
         <Header />
         <Routes>
           <Route path="/" element={<RouteInfo />}>
