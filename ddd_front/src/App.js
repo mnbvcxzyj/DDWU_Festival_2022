@@ -7,14 +7,18 @@ import SomTalk from "./talk/SomTalk";
 import Home from "./main/Home";
 import Map from "./main/Map";
 import Stamp from "./main/Map";
+import Header from "./pages/Header";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <Header />
+      <div style={{ maxWidth: "1280px", margin: "0px auto" }}>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          {/* <Route path="/" element={</>}></Route> */}
+          <Route path="/home" element={<Home />}></Route>
           <Route path="/CampusMap" element={<Map />}></Route>
           <Route path="/Stamp" element={<Stamp />}></Route>
           <Route path="/event" element={<EventHome />} />
@@ -23,6 +27,7 @@ function App() {
           <Route path="/somtalk" element={<SomTalk />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

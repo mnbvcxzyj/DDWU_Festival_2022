@@ -12,9 +12,8 @@ const Background = styled.div`
 
 //동그란 학교 + 목화 이미지
 const TopImg = styled.div`
-  margin-left: auto;
-  margin-right: auto;
   height: 120px;
+  position: relative;
 `;
 
 //스탬프투어, 캠퍼스맵 들어가는 박스
@@ -78,9 +77,9 @@ const TextContents = styled.text`
 //width 조정
 const Title = styled.div`
   position: absolute;
+  top: 20px;
   width: 130px;
   height: 23px;
-  top: 24px;
   margin-left: 5%;
   font-weight: 700;
   font-size: 20px;
@@ -92,9 +91,9 @@ const Title = styled.div`
 
 const Contents = styled.text`
   position: absolute;
+  top: 58px;
   width: 350px;
   height: 32px;
-  top: 71px;
   margin-left: 5%;
   font-weight: 700;
   font-size: 14px;

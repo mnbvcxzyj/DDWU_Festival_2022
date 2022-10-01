@@ -9,9 +9,38 @@ const MapImgDiv = styled.div`
   align-items: center;
 `;
 
-const MapHeaderImg = styled.img`
-  width: 100%;
-  height: 100%;
+const MapHeaderImg = styled.div`
+  height: 120px;
+  position: relative;
+`;
+
+const Title = styled.div`
+  position: absolute;
+  top: 20px;
+  width: 130px;
+  height: 23px;
+  margin-left: 5%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.333333px;
+  color: #ffffff;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+`;
+
+const Contents = styled.text`
+  position: absolute;
+  top: 58px;
+  width: 350px;
+  height: 32px;
+  margin-left: 5%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.333333px;
+  color: #fffcf6;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
 `;
 
 const MapImg = styled.img`
@@ -69,7 +98,18 @@ const MapInfoRowcontent = styled.div`
 function EventMap() {
   return (
     <>
-      <MapHeaderImg src={require("../img/eventLocate.png")} />
+      <MapHeaderImg>
+        <Title>캠퍼스 맵</Title>
+        <Contents>
+          학교 건물들의 상대적인 위치와 구조를 확인하세요
+          <br />
+          여기저기 솜솜이들의 발자국을 솜쿵솜쿵
+        </Contents>
+        <img
+          src={require("../img/TopImg.png")}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </MapHeaderImg>
       <MapImgDiv>
         <MapImg src={require("../img/eventmap.png")} />
         <MapInfo>

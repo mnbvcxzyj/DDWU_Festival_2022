@@ -19,9 +19,8 @@ import "aos/dist/aos.css";
 
 const Background = styled.div`
   background: #fffcf6;
-  max-width: 1280px;
   overflow: hidden;
-  margin: 0 auto;
+  margin-bottom: 130px;
 `;
 
 //목화 뭉탱이 이미지 // + 학교 이미지로 수정
