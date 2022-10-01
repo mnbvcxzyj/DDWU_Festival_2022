@@ -6,6 +6,7 @@ import Zoom from "./ZoomStamp";
 const Background = styled.div`
   background: #fffcf6;
   padding-bottom: 5%;
+  max-width: 1280px;
 `;
 //Footer달고 padding 퍼센트 조절
 
@@ -80,7 +81,7 @@ const Title = styled.div`
   width: 130px;
   height: 23px;
   top: 24px;
-  margin-left: 10%;
+  margin-left: 5%;
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
@@ -94,7 +95,7 @@ const Contents = styled.text`
   width: 350px;
   height: 32px;
   top: 71px;
-  margin-left: 10%;
+  margin-left: 5%;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -104,6 +105,20 @@ const Contents = styled.text`
   text-align: left;
 `;
 //margin-left: 수정 여부 물어보기
+
+const Text = styled.div`
+  width: 200px;
+  height: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5f4637;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: -5%;
+`;
 
 function Stamp() {
   return (
@@ -120,6 +135,7 @@ function Stamp() {
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         ></img>
       </TopImg>
+      <Text>*지도를 확대하세요</Text>
       <ImageBox>
         <Zoom></Zoom>
       </ImageBox>

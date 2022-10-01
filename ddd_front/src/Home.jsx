@@ -1,25 +1,66 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SOMSOM from "./img/somsom.png";
+import GROUP from "./img/Group22.png";
+import Ghost1 from "./img/ghost1.png";
+import Ghost2 from "./img/ghost2.png";
+import Ghost3 from "./img/ghost3.png";
+import Ghost4 from "./img/ghost4.png";
+import Ghost5 from "./img/ghost5.png";
+import Web from "./img/web.png";
 import STAMPIMG from "./img/stampIMG.png";
 import MAPIMG from "./img/mapIMG.png";
 import LOGO from "./img/logo.png";
-import GROUP from "./img/Group.png";
+import DDDtext from "./img/DDDtext.png";
+import DDD from "./img/DDD.png";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Background = styled.div`
   background: #fffcf6;
+  max-width: 1280px;
 `;
 
-//학교 + 목화 이미지
-const CircleIMG = styled.div`
-  width: 342.89px;
-  height: 579.27px;
+//목화 뭉탱이 이미지 // + 학교 이미지로 수정
+//margin-bottom: 픽셀 조정해서 위치 바꿈
+const GroupIMG = styled.div`
+  position: relative;
+  width: 343.98px;
+  height: 375.38px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 200px;
+`;
+
+//원형 학교사진
+const Slide = styled.div`
+  width: 240px;
+  height: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 20px;
+`;
+
+//동덕여자대학교 2022 대동제 10.05-10.07
+const CenterDDD = styled.div`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 400px;
+`;
+
+//한가지동 움직일동 뜨거운모양동
+const BottomDDD = styled.div`
+  position: absolute;
+  margin: auto;
+  width: 329px;
+  height: 32px;
+  top: 500px;
 `;
 
 //스탬프투어 div
-//제일 바깥쪽 테두리
 const StampTour = styled.div`
   position: relative;
   box-sizing: border-box;
@@ -107,19 +148,64 @@ const Contents2 = styled.div`
   color: #805e4a;
 `;
 
-//위쪽 솜솜이
+//스탬프투어 솜솜이
+//margin-left 바꿔야 함
 const Somsom = styled.div`
   width: 100px;
   height: 92px;
-  margin-left: 50%;
+  margin-left: 65%;
 `;
 
+//캠퍼스맵 솜솜이
 const Somsom2 = styled.div`
   width: 100px;
   height: 92px;
   margin-top: 10px;
-  margin-left: 15%;
-  transform: matrix(-1, 0, 0, 1, 0, 0);
+  margin-left: 5%;
+`;
+
+//제일 위쪽 솜솜이
+const Somsom3 = styled.div`
+  position: absolute;
+  width: 95.51px;
+  height: 99.27px;
+  margin-left: 37.3%;
+  margin-top: 5%;
+`;
+
+//오른쪽 비스듬한 솜솜이
+const Somsom4 = styled.div`
+  position: absolute;
+  width: 180px;
+  height: 184.19px;
+  margin-left: 50%;
+  margin-top: 85%;
+`;
+
+//왼쪽 비스듬한 솜솜이
+const Somsom5 = styled.div`
+  position: absolute;
+  width: 227.36px;
+  height: 236px;
+  margin-top: 170%;
+`;
+
+const Web1 = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 200px;
+`;
+
+const Web2 = styled.div`
+  position: absolute;
+  width: 240px;
+  height: 240px;
+`;
+
+const Web3 = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 200px;
 `;
 
 //margin-top: 5 / 10 물어보고 결정하기
@@ -163,57 +249,124 @@ const Divv = styled.div`
 `;
 
 function Home() {
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
     <>
       <Background>
-        <CircleIMG>
+        <GroupIMG>
+          <Web1>
+            <div data-aos="zoom-in" data-aos-duration="1000">
+              <img
+                src={Web}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  marginLeft: "-55%",
+                  marginTop: "-35%",
+                }}
+              />
+            </div>
+          </Web1>
+
+          <div data-aos="fade-up" data-aos-duration="1000">
+            <Somsom3>
+              <img
+                src={Ghost1}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Somsom3>
+          </div>
+
+          <div data-aos="fade-up-left" data-aos-duration="1000">
+            <Somsom4>
+              <img
+                src={Ghost4}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Somsom4>
+          </div>
+
           <img
             src={GROUP}
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              position: "relative",
+              marginTop: "50px",
             }}
-          ></img>
-        </CircleIMG>
-        <Somsom>
-          <img
-            src={SOMSOM}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          ></img>
-        </Somsom>
-        <StampTour>
-          <img
-            src={STAMPIMG}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          ></img>
-          <WhiteFooter>
-            <Title>스탬프 투어</Title>
-            <Contents>프로그램 부스에 참여하고 나면 도장을 찍어드려요</Contents>
-          </WhiteFooter>
-        </StampTour>
-        <Divv>
-          <Somsom2>
+          />
+
+          <Slide>
+            <div data-aos="fade-up-right" data-aos-duration="1000">
+              <Somsom5>
+                <img
+                  src={Ghost5}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </Somsom5>
+            </div>
+          </Slide>
+
+          <CenterDDD>
             <img
-              src={SOMSOM}
+              src={DDDtext}
+              style={{
+                width: "33%",
+                objectFit: "cover",
+                marginLeft: "32%",
+              }}
+            />
+          </CenterDDD>
+
+          <BottomDDD>
+            <img
+              src={DDD}
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
               }}
-            ></img>
-          </Somsom2>
-          <CampusMap>
+            />
+          </BottomDDD>
+        </GroupIMG>
+
+        {/*스탬프투어 구간 시작*/}
+        <Divv>
+          <div data-aos="fade-up">
+            <Somsom>
+              <img
+                src={Ghost2}
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  marginTop: "30px",
+                }}
+              ></img>
+            </Somsom>
+          </div>
+        </Divv>
+
+        <Link to="/Stamp">
+          <StampTour>
             <img
-              src={MAPIMG}
+              src={STAMPIMG}
               style={{
                 width: "100%",
                 height: "100%",
@@ -221,11 +374,62 @@ function Home() {
               }}
             ></img>
             <WhiteFooter>
-              <Title2>캠퍼스 맵</Title2>
-              <Contents2>학교 건물들의 위치와 구조를 한번에</Contents2>
+              <Title>스탬프 투어</Title>
+              <Contents>
+                프로그램 부스에 참여하고 나면 도장을 찍어드려요
+              </Contents>
             </WhiteFooter>
-          </CampusMap>
-        </Divv>
+          </StampTour>
+        </Link>
+
+        {/*캠퍼스맵 구간 시작*/}
+        <Link to="/CampusMap">
+          <Divv>
+            <Web2>
+              <div data-aos="zoom-in" data-aos-duration="1000">
+                <img
+                  src={Web}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    marginLeft: "85%",
+                    marginTop: "-40%",
+                  }}
+                />
+              </div>
+            </Web2>
+
+            <div data-aos="fade-up">
+              <Somsom2>
+                <img
+                  src={Ghost3}
+                  style={{
+                    width: "100%",
+                    objectFit: "cover",
+                    marginTop: "30px",
+                  }}
+                ></img>
+              </Somsom2>
+            </div>
+
+            <CampusMap>
+              <img
+                src={MAPIMG}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              ></img>
+              <WhiteFooter>
+                <Title2>캠퍼스 맵</Title2>
+                <Contents2>학교 건물들의 위치와 구조를 한번에</Contents2>
+              </WhiteFooter>
+            </CampusMap>
+          </Divv>
+        </Link>
+
         <Text>
           한가지 <ColorText>동</ColorText> + 움직일 <ColorText>동</ColorText> +
           뜨거운 모양 <ColorText>동</ColorText> 을 합친 단어
@@ -241,6 +445,20 @@ function Home() {
               objectFit: "cover",
             }}
           ></img>
+          <Web3>
+            <div data-aos="zoom-in" data-aos-duration="1000">
+              <img
+                src={Web}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  marginLeft: "-80%",
+                  marginTop: "-50%",
+                }}
+              />
+            </div>
+          </Web3>
         </Logo>
       </Background>
     </>
