@@ -65,12 +65,12 @@ const Program_Board = () => {
     },
     {
       id: 4,
-      dayTitle: "06 . WED",
+      dayTitle: "06 . THU",
       dayContent: <Second_ddd />,
     },
     {
       id: 5,
-      dayTitle: "07 . WED",
+      dayTitle: "07 . FRI",
       dayContent: <Third_ddd />,
     },
   ];

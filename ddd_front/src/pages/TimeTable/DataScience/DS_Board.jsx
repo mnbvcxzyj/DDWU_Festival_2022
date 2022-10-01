@@ -20,7 +20,7 @@ const DayUl = styled.ul`
   list-style: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 19px;
   text-align: center;
   letter-spacing: -0.333333px;
@@ -52,15 +52,15 @@ const ContentDiv = styled.div`
 const DS_Board = () => {
   const dayTabArr = [
     {
-      dayTitle: "05 . WED",
+      dayTitle: "WED . 1부",
       dayContent: <First_ds />,
     },
     {
-      dayTitle: "06 . WED",
+      dayTitle: "WED . 2부",
       dayContent: <Second_ds />,
     },
     {
-      dayTitle: "07 . WED",
+      dayTitle: "WED . 3부",
       dayContent: <Third_ds />,
     },
   ];
