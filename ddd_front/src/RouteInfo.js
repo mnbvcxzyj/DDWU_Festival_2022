@@ -5,7 +5,7 @@ function RouteInfo() {
   return (
     <div
       style={{
-        paddingBottom: "200px",
+        paddingBottom: "240px",
       }}
     >
       <Outlet />

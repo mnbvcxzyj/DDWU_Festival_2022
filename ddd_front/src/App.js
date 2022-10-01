@@ -13,6 +13,7 @@ import InfoStaff from "./introduce/InfoStaff";
 import InfoLion from "./introduce/InfoLion";
 import RouteInfo from "./RouteInfo";
 import TimeTable from "./pages/TimeTable/TimeTable";
+import InTro from "./introduce/InTro";
 
 function App() {
   return (
@@ -36,9 +37,11 @@ function App() {
             <Route path="/event" element={<EventHome />} />
             <Route path="/event/detail:id" element={<EventDetail />} />
             <Route path="/eventmap" element={<EventMap />} />
-            <Route path="/InfoDDD" element={<InfoDDD />}></Route>
-            <Route path="/InfoStaff" element={<InfoStaff />}></Route>
-            <Route path="/InfoLikeLion" element={<InfoLion />}></Route>
+            <Route path="/intro" element={<InTro />}>
+              <Route path="/intro/InfoDDD" element={<InfoDDD />}></Route>
+              <Route path="/intro/InfoStaff" element={<InfoStaff />}></Route>
+              <Route path="/intro/InfoLikeLion" element={<InfoLion />}></Route>
+            </Route>
             <Route path="/timetable" element={<TimeTable />} />
           </Route>
           <Route path="/somtalk" element={<SomTalk />} />

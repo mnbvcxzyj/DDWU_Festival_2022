@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Poster from "../img/poster.png";
-import { Link } from "react-router-dom";
 
-const Background = styled.div`
-  background: #fffcf6;
-  max-width: 1280px;
-`;
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Title = styled.div`
   width: auto;
@@ -20,41 +17,6 @@ const Title = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
-`;
-
-const Nav = styled.div`
-  width: 100%;
-  text-align: center;
-`;
-
-const Navbtn = styled.button`
-  background: #fffefa;
-  border: 2px solid #8b2842;
-  box-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  border-radius: 50px;
-  color: #8b2842;
-  padding: 1% 2%;
-  margin: 3%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-`;
-
-const NavbtnHere = styled.button`
-  background: #8b2842;
-  border: 2px solid #8b2842;
-  box-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  border-radius: 50px;
-  color: #fffefa;
-  padding: 1% 2%;
-  margin: 3%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: -0.333333px;
 `;
 
 const PicDiv = styled.div`
@@ -85,19 +47,12 @@ const Color2 = styled.span`
 `;
 
 function InfoDDD() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <Background>
-      <Nav>
-        <Link to="/InfoDDD">
-          <NavbtnHere>동.동.동</NavbtnHere>
-        </Link>
-        <Link to="/InfoStaff">
-          <Navbtn>축.운.위</Navbtn>
-        </Link>
-        <Link to="/InfoLikeLion">
-          <Navbtn>멋.사 10기</Navbtn>
-        </Link>
-      </Nav>
+    <>
       <Title>동덕여자대학교 2022 대동제 동.동.동</Title>
       <div data-aos="zoom-in">
         <PicDiv>
@@ -128,7 +83,7 @@ function InfoDDD() {
           <br /> <Color2>즐거운 축제</Color2>가 되기를 바랍니다.
         </TextDiv>
       </div>
-    </Background>
+    </>
   );
 }
 
