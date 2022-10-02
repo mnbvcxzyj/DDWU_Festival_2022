@@ -80,12 +80,12 @@ const First_ddd = () => {
         />
         <TimeImg2
           variants={tableVariants}
-          src={require("../../../img/img_yj/ddd05_1.png")}
+          src={require("../../../img/img_yj/ddd05_2.png")}
         />
         <hr />
         <TimeImg3
           variants={tableVariants}
-          src={require("../../../img/img_yj/ddd05_2.png")}
+          src={require("../../../img/img_yj/ddd05_3.png")}
         />
         <br />
         <IntroImg
