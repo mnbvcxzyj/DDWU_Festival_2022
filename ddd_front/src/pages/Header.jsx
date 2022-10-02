@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const HeaderDiv = styled.div`
   max-width: 1280px;
   margin: 0 auto;
@@ -113,6 +116,9 @@ const ListLink = styled(NavLink)`
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
+  useEffect(() => {
+    AOS.init();
+  });
 
   return (
     <>
