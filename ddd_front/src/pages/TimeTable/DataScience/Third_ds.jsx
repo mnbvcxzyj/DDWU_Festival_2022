@@ -36,10 +36,6 @@ const TimeImg3 = styled(motion.img)`
   width: 130px;
 `;
 
-const LocationImg = styled.img`
-  width: 27px;
-`;
-
 const boxVariants = {
   start: {
     opacity: 0,
