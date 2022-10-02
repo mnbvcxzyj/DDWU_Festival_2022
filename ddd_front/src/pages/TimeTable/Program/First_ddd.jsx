@@ -74,12 +74,24 @@ const First_ddd = () => {
   return (
     <Components>
       <Box variants={boxVariants} initial="start" animate="end">
-        <TimeImg1 variants={tableVariants} src="img/ddd05_1.png" />
-        <TimeImg2 variants={tableVariants} src="img/ddd05_2.png" />
+        <TimeImg1
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ddd05_1.png")}
+        />
+        <TimeImg2
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ddd05_1.png")}
+        />
         <hr />
-        <TimeImg3 variants={tableVariants} src="img/ddd05_3.png" />
+        <TimeImg3
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ddd05_2.png")}
+        />
         <br />
-        <IntroImg variants={tableVariants} src="img/detailFestival.png" />
+        <IntroImg
+          variants={tableVariants}
+          src={require("../../../img/img_yj/detailFestival.png")}
+        />
       </Box>
     </Components>
   );

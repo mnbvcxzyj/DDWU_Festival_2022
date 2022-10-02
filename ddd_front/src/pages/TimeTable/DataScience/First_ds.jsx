@@ -87,14 +87,26 @@ const First_ds = () => {
     <Components>
       <Box variants={boxVariants} initial="start" animate="end">
         <Div1>
-          <TimeImg1 variants={tableVariants} src="img/ds_1_1.png" />
-          <TimeImg2 variants={tableVariants} src="img/ds_1_2.png" />
+          <TimeImg1
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ds_1_1.png")}
+          />
+          <TimeImg2
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ds_1_2.png")}
+          />
         </Div1>
 
         <hr />
         <Div2>
-          <TimeImg3 variants={tableVariants} src="img/ds_1_3.png" />
-          <TimeImg4 variants={tableVariants} src="img/ds_1_4.png" />
+          <TimeImg3
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ds_1_3.png")}
+          />
+          <TimeImg4
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ds_1_4.png")}
+          />
         </Div2>
       </Box>
     </Components>

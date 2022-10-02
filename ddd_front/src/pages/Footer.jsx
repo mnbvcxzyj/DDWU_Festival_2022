@@ -72,7 +72,7 @@ const Footer = () => {
           <NameDiv>동덕여자대학교 멋쟁이 사자처럼</NameDiv>
         </PartDiv>
         <img
-          src="img/insta.png"
+          src={require("../img/img_yj/insta.png")}
           onClick={() =>
             window.open("https://www.instagram.com/dongduk_likelion", "_blank")
           }

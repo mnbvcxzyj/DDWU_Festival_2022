@@ -92,16 +92,31 @@ const Second_ddd = () => {
     <Components>
       <Box variants={boxVariants} initial="start" animate="end">
         <Div1>
-          <TimeImg1 variants={tableVariants} src="img/ddd06_1.png" />
-          <TimeImg2 variants={tableVariants} src="img/ddd06_2.png" />
+          <TimeImg1
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ddd06_1.png")}
+          />
+          <TimeImg2
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ddd06_2.png")}
+          />
         </Div1>
         <hr />
         <Div2>
-          <TimeImg3 variants={tableVariants} src="img/ddd06_3.png" />
-          <TimeImg4 variants={tableVariants} src="img/ddd06_4.png" />
+          <TimeImg3
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ddd06_3.png")}
+          />
+          <TimeImg4
+            variants={tableVariants}
+            src={require("../../../img/img_yj/ddd06_4.png")}
+          />
         </Div2>
         <br />
-        <IntroImg variants={tableVariants} src="img/detailFestival.png" />
+        <IntroImg
+          variants={tableVariants}
+          src={require("../../../img/img_yj/detailFestival.png")}
+        />
       </Box>
     </Components>
   );

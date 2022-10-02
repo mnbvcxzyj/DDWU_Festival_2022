@@ -73,10 +73,19 @@ const Third_ds = () => {
   return (
     <Components>
       <Box variants={boxVariants} initial="start" animate="end">
-        <TimeImg1 variants={tableVariants} src="img/ds_3_1.png" />
-        <TimeImg2 variants={tableVariants} src="img/ds_3_2.png"></TimeImg2>
+        <TimeImg1
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ds_3_1.png")}
+        />
+        <TimeImg2
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ds_3_2.png")}
+        ></TimeImg2>
         <hr />
-        <TimeImg3 variants={tableVariants} src="img/ds_3_3.png" />
+        <TimeImg3
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ds_3_2.png")}
+        />
       </Box>
     </Components>
   );

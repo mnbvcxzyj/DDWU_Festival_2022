@@ -118,7 +118,7 @@ const Header = () => {
     <>
       <HeaderDiv>
         <HamburgerToggle onClick={() => setOpen(!isOpen)}>
-          <img src="img/hamburger.png" alt="메뉴" />
+          <img src={require("../img/img_yj/hamburger.png")} alt="메뉴" />
         </HamburgerToggle>
         <MainLogo>同 動 烔</MainLogo>
       </HeaderDiv>
@@ -127,7 +127,7 @@ const Header = () => {
           <NavLogo>同 動 烔</NavLogo>
           <BackImgDiv>
             <img
-              src="img/back_toggle.png"
+              src={require("../img/img_yj/back_toggle.png")}
               onClick={() => setOpen(!isOpen)}
               alt="닫기"
             />
@@ -480,7 +480,7 @@ const Header = () => {
               onClick={() => setOpen(!isOpen)}
             />
           </ListDiv>
-          <GhostSomImg src="img/ghostsom.png" />
+          <GhostSomImg src={require("../img/img_yj/ghostsom.png")} />
         </ul>
       </NavMenu>
     </>
