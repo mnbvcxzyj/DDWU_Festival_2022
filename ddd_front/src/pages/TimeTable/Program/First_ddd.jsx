@@ -20,11 +20,6 @@ const Box = styled(motion.div)`
     height: 3px;
     margin: -12px -10px -10px -10px;
     background-color: #805e4a;
-<<<<<<< HEAD
-=======
-    position: relative;
-    z-index: -1;
->>>>>>> 21b7585a8d0a00ac5e647b98d100758f7852b957
   }
 `;
 

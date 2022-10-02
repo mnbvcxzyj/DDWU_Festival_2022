@@ -26,17 +26,11 @@ const DayUl = styled.ul`
   text-align: center;
   letter-spacing: -0.333333px;
   color: #eed8de;
-<<<<<<< HEAD
-
-  li {
-    padding: 1rem 2rem 1rem 2rem;
-=======
   cursor: pointer;
 
   li {
     padding: 1rem 2rem 1rem 2rem;
     cursor: pointer;
->>>>>>> 21b7585a8d0a00ac5e647b98d100758f7852b957
   }
 
   .nonfocus {

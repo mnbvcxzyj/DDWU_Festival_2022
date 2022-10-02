@@ -27,10 +27,7 @@ const TabUl = styled.ul`
   border: 2px solid #8b2842;
   box-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
   border-radius: 50px;
-<<<<<<< HEAD
-=======
   cursor: pointer;
->>>>>>> 21b7585a8d0a00ac5e647b98d100758f7852b957
 
   .active {
     background: #8b2842;
