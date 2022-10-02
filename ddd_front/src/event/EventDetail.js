@@ -86,7 +86,7 @@ function EventDetail() {
   const params = useParams();
   const [dt, setDt] = useState({});
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/${params.id}`).then((response) => {
+    axios.get(`http://127.0.0.1:8000/post/${params.id}`).then((response) => {
       setDt(response.data);
     });
   }, []);

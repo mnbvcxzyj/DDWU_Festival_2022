@@ -140,7 +140,8 @@ const Header = () => {
           </BackImgDiv>
           <ListDiv>
             <ListLink
-              to={"/home"}
+              end
+              to={"/"}
               children={({ isActive }) => {
                 return (
                   <>

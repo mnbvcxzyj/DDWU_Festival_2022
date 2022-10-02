@@ -136,10 +136,12 @@ function EventHome() {
   const params = searchParams.get("search");
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/?search=${params}`).then((response) => {
-      setEData(response.data);
-      setInputSearch(params);
-    });
+    axios
+      .get(`http://127.0.0.1:8000/post/?search=${params}`)
+      .then((response) => {
+        setEData(response.data);
+        setInputSearch(params);
+      });
   }, [params]);
 
   return (
@@ -170,18 +172,17 @@ function EventHome() {
       <EventList>
         {eData.length ? (
           eData.map((list, index) => (
-            <EventBox key={index}>
+            <EventBox
+              key={index}
+              onClick={() => {
+                navigate(`/event/detail${index + 1}`);
+              }}
+            >
               <EventImgDiv>
                 <EventImg src={list.eventImg} />
               </EventImgDiv>
               <EventInfo>
-                <EventTitle
-                  onClick={() => {
-                    navigate(`/event/detail${index + 1}`);
-                  }}
-                >
-                  {list.eventTitle}
-                </EventTitle>
+                <EventTitle>{list.eventTitle}</EventTitle>
                 <EventIntro>{list.eventIntro}</EventIntro>
               </EventInfo>
             </EventBox>

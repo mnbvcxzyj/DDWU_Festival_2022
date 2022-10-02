@@ -3,7 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useTransition, animated, config } from "react-spring";
-
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 const SomTalkBox = styled.div``;
 
 const SomTalkDes = styled.p`
