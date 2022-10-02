@@ -64,10 +64,16 @@ const Third_ddd = () => {
   return (
     <Components>
       <Box variants={boxVariants} initial="start" animate="end">
-        <TimeImg1 variants={tableVariants} src="img/ddd07_1.png" />
+        <TimeImg1
+          variants={tableVariants}
+          src={require("../../../img/img_yj/ddd07_1.png")}
+        />
         <hr />
         <br />
-        <IntroImg variants={tableVariants} src="img/detailFestival.png" />
+        <IntroImg
+          variants={tableVariants}
+          src={require("../../../img/img_yj/detailFestival.png")}
+        />
       </Box>
     </Components>
   );
