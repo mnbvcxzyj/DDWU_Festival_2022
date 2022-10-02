@@ -19,18 +19,6 @@ const EventImg = styled.img`
   border-radius: 5px;
 `;
 
-const EventTitle = styled.h2`
-  color: #8b2842;
-  font-weight: 400;
-  font-size: 24px;
-  text-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  padding: 20px 16px 40px;
-  @media only screen and (max-width: 500px) {
-    padding: 24px 0 12px;
-    font-size: 20px;
-  }
-`;
-
 const EventInfoList = styled.ul``;
 const EventInfo = styled.li``;
 const EventInfoTitle = styled.div`
@@ -57,38 +45,40 @@ const EventListImg = styled.img`
 `;
 
 const EventInfoDes = styled.div`
-  padding: 20px 16px 40px;
+  padding: 24px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
+  color: #5f4637;
+  border-left: 3px solid #e0c895;
+  margin: 16px 0 30px;
   @media only screen and (max-width: 700px) {
+    margin: 8px 0 24px;
     font-size: 14px;
-    padding: 12px 8px 40px;
+    padding: 12px;
   }
 `;
 
 const EventInfoChat = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
   padding: 20px 16px;
+  border-left: 3px solid #e0c895;
+  margin: 16px 0 50px;
   @media only screen and (max-width: 700px) {
-    padding: 12px 8px;
+    margin: 8px 0 30px;
+    padding: 20px 12px;
   }
 `;
 
-const QRImg = styled.img`
-  @media only screen and (min-width: 700px) {
-    width: 100px;
-    height: 100px;
-  }
-`;
-
-const QRLink = styled.div`
-  word-break: break-all;
+const QRLink = styled.img`
   cursor: pointer;
   &:hover {
     color: #8b2842;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 33px;
+    height: 33px;
   }
 `;
 
@@ -112,7 +102,7 @@ function EventDetail() {
             <EventListImg src={require("../img/liststyle.png")} />
             <span>부스/이벤트 명</span>
           </EventInfoTitle>
-          <EventTitle>{dt.eventTitle}</EventTitle>
+          <EventInfoDes>{dt.eventTitle}</EventInfoDes>
         </EventInfo>
         <EventInfo>
           <EventInfoTitle>
@@ -145,11 +135,16 @@ function EventDetail() {
               onClick={() => {
                 window.open("https://open.kakao.com/o/sRAKXZxe");
               }}
-            >
-              https://open.kakao.com/o/sRAKXZxe
-            </QRLink>
-
-            <QRImg src={require("../img/openchat.png")} />
+              src={require("../img/kakao.png")}
+            />
+            <QRLink
+              onClick={() => {
+                window.open(
+                  "https://instagram.com/ddwu.festival2022?igshid=YmMyMTA2M2Y="
+                );
+              }}
+              src={require("../img/insta.png")}
+            />
           </EventInfoChat>
         </EventInfo>
       </EventInfoList>

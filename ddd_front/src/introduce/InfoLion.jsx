@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Lion1 from "../img/lion1.png";
 import Lion2 from "../img/lion2.png";
 import Lion3 from "../img/lion3.png";
@@ -20,11 +19,6 @@ import FrontHS from "../img/FrontHS.png";
 import DesignHY from "../img/DesignHY.png";
 import DesignYI from "../img/DesignYI.png";
 
-const Background = styled.div`
-  background: #fffcf6;
-  max-width: 1280px;
-`;
-
 const Title = styled.div`
   width: auto;
   font-weight: 700;
@@ -37,41 +31,6 @@ const Title = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
-`;
-
-const Nav = styled.div`
-  width: 100%;
-  text-align: center;
-`;
-
-const Navbtn = styled.button`
-  background: #fffefa;
-  border: 2px solid #8b2842;
-  box-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  border-radius: 50px;
-  color: #8b2842;
-  padding: 1% 2%;
-  margin: 3%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-`;
-
-const NavbtnHere = styled.button`
-  background: #8b2842;
-  border: 2px solid #8b2842;
-  box-shadow: 4px 4px 4px rgba(139, 40, 66, 0.25);
-  border-radius: 50px;
-  color: #fffefa;
-  padding: 1% 2%;
-  margin: 3%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: -0.333333px;
 `;
 
 const Box = styled.div`
@@ -203,20 +162,8 @@ const Deco3 = styled.div`
 
 function InfoStaff() {
   return (
-    <Background>
-      <Nav>
-        <Link to="/InfoDDD">
-          <Navbtn>동.동.동</Navbtn>
-        </Link>
-        <Link to="/InfoStaff">
-          <Navbtn>축.운.위</Navbtn>
-        </Link>
-        <Link to="/InfoLikeLion">
-          <NavbtnHere>멋.사 10기</NavbtnHere>
-        </Link>
-      </Nav>
+    <>
       <Title>동덕여자대학교 멋쟁이사자처럼 10기</Title>
-
       <Line>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <Deco1></Deco1>
@@ -534,7 +481,7 @@ function InfoStaff() {
           <br /> <Color2>실제 개발 및 배포를 목적</Color2>으로 합니다.
         </Text>
       </div>
-    </Background>
+    </>
   );
 }
 
