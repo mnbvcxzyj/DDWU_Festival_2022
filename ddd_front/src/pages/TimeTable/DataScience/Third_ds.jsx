@@ -84,7 +84,7 @@ const Third_ds = () => {
         <hr />
         <TimeImg3
           variants={tableVariants}
-          src={require("../../../img/img_yj/ds_3_2.png")}
+          src={require("../../../img/img_yj/ds_3_3.png")}
         />
       </Box>
     </Components>
